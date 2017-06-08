@@ -40,6 +40,7 @@ public class Player : MonoBehaviour {
 
     IEnumerator GrabbingState() {
         Debug.Log("Entering Grabbing for Player " + playerId);
+        StartLerp();
         while (state == PlayerState.Grabbing) {
             yield return 0;
         }
@@ -72,6 +73,19 @@ public class Player : MonoBehaviour {
     bool rightPressed = false;
     FoodColor selection;
 
+    //Grabbing vars
+    Vector2 originalLocation;
+    Vector2 selectionLocation;
+
+    [SerializeField]
+    float speed;
+    private float startTime;
+    private float distance;
+    float distCovered;
+    float fracJourney;
+
+    bool reachedMochi = false;
+
     void Awake() {
         player = ReInput.players.GetPlayer(playerId); //use to assign map and access button states
 
@@ -96,6 +110,9 @@ public class Player : MonoBehaviour {
 	void Update () {
         GetInput();
         ProcessInput();
+        if(state == PlayerState.Grabbing) {
+            UpdateLerp();
+        }
 	}
 
     private void GetInput() {
@@ -142,6 +159,41 @@ public class Player : MonoBehaviour {
             case GameState.EndGame:
                 state = PlayerState.Idle;
                 break;
+        }
+    }
+
+    void StartLerp() {
+        //Set start vars
+        selectionLocation = GameManager.Instance.mochiLocations[Enum.GetName(typeof(FoodColor), selection)];
+        originalLocation = transform.position;
+        Debug.Log(playerId + " : " + originalLocation);
+        Vector2 diff = selectionLocation - originalLocation;
+        diff.Normalize();
+        float zRot = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, zRot);
+
+        startTime = Time.time;
+        distance = Vector2.Distance(originalLocation, selectionLocation);
+    }
+
+    void UpdateLerp() {
+        if(fracJourney == 1) {
+            Debug.Log("Aight");
+        }
+        if((Vector2)transform.position == selectionLocation && reachedMochi == false) {
+            startTime = Time.time;
+            distance = Vector2.Distance(selectionLocation, originalLocation);
+            reachedMochi = true;
+            EventManager.TriggerIntEvent("GrabMochi", playerId);
+        }
+        if (reachedMochi) {
+            distCovered = (Time.time - startTime) * speed;
+            fracJourney = distCovered / distance;
+            transform.position = Vector3.Lerp(selectionLocation, originalLocation, fracJourney);
+        } else {
+            distCovered = (Time.time - startTime) * speed;
+            fracJourney = distCovered / distance;
+            transform.position = Vector3.Lerp(originalLocation, selectionLocation, fracJourney);
         }
     }
 }

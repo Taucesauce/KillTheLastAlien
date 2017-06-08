@@ -15,10 +15,12 @@ public class Food : MonoBehaviour {
 
 	void OnEnable() {
         EventManager.StartListeningTypeInt(Enum.GetName(typeof(FoodColor),color), AssignPlayer);
+        EventManager.StartListeningTypeInt("GrabMochi", AttachToPlayer);
     }
 
     void OnDisable() {
         EventManager.StopListeningTypeInt(Enum.GetName(typeof(FoodColor), color), AssignPlayer);
+        EventManager.StopListeningTypeInt("GrabMochi", AttachToPlayer);
     }
 
     void AssignPlayer(int id) {
@@ -27,6 +29,13 @@ public class Food : MonoBehaviour {
             Debug.Log("Player ID: " + id);
             playerID = id;
             isSelected = true;
+        }
+    }
+
+    void AttachToPlayer(int id) {
+        if(id == playerID) {
+            int adjustedID = (int)playerID++;
+            //transform.parent = GameObject.Find("Player" + adjustedID).transform;
         }
     }
 }

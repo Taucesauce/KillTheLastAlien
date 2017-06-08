@@ -5,9 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public GameState state;
     Dictionary<int, bool> playersLocked;
+    public Dictionary<string, Vector2> mochiLocations;
 
     IEnumerator MenuState() {
         Debug.Log("Entering Menu State");
+        EventManager.TriggerIntEvent("GameStateChange", (int)GameState.Menu);
         while (state == GameState.Menu) {
             yield return 0;
         }
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator EndRoundState() {
         Debug.Log("Entering End Round State");
+        EventManager.TriggerIntEvent("GameStateChange", (int)GameState.EndRound);
         while (state == GameState.EndRound) {
             yield return 0;
         }
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator EndGameState() {
         Debug.Log("Entering End Game State");
+        EventManager.TriggerIntEvent("GameStateChange", (int)GameState.EndGame);
         while (state == GameState.EndGame) {
             yield return 0;
         }
@@ -88,6 +92,11 @@ public class GameManager : MonoBehaviour {
             playersLocked.Add(1, false);
             playersLocked.Add(2, false);
             playersLocked.Add(3, false);
+
+            mochiLocations = new Dictionary<string, Vector2>();
+            mochiLocations.Add("Green", GameObject.Find("GreenMochi").transform.position);
+            mochiLocations.Add("Orange", GameObject.Find("OrangeMochi").transform.position);
+            mochiLocations.Add("Pink", GameObject.Find("PinkMochi").transform.position);
         }
     }
 
