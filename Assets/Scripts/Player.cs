@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Rewired;
 using System;
 
@@ -78,7 +79,8 @@ public class Player : MonoBehaviour {
     Vector2 selectionLocation;
 
     [SerializeField]
-    float speed;
+    float lerpTime = 1f; //time it takes arm to travel to mochi 
+
     private float startTime;
     private float distance;
     float distCovered;
@@ -166,13 +168,12 @@ public class Player : MonoBehaviour {
         //Set start vars
         selectionLocation = GameManager.Instance.mochiLocations[Enum.GetName(typeof(FoodColor), selection)];
         originalLocation = transform.position;
-        Debug.Log(playerId + " : " + originalLocation);
         Vector2 diff = selectionLocation - originalLocation;
         diff.Normalize();
         float zRot = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, zRot);
 
-        startTime = Time.time;
+        startTime = 0;
         distance = Vector2.Distance(originalLocation, selectionLocation);
     }
 
@@ -181,18 +182,18 @@ public class Player : MonoBehaviour {
             Debug.Log("Aight");
         }
         if((Vector2)transform.position == selectionLocation && reachedMochi == false) {
-            startTime = Time.time;
+            startTime = 0;
             distance = Vector2.Distance(selectionLocation, originalLocation);
             reachedMochi = true;
             EventManager.TriggerIntEvent("GrabMochi", playerId);
         }
         if (reachedMochi) {
-            distCovered = (Time.time - startTime) * speed;
-            fracJourney = distCovered / distance;
+            startTime += Time.deltaTime;
+            fracJourney = startTime / lerpTime;
             transform.position = Vector3.Lerp(selectionLocation, originalLocation, fracJourney);
         } else {
-            distCovered = (Time.time - startTime) * speed;
-            fracJourney = distCovered / distance;
+            startTime += Time.deltaTime;
+            fracJourney = startTime / lerpTime;
             transform.position = Vector3.Lerp(originalLocation, selectionLocation, fracJourney);
         }
     }

@@ -9,10 +9,16 @@ public class Food : MonoBehaviour {
 
     public FoodColor color;
     public bool isSelected = false;
+    bool isAttached = false;
 
     [SerializeField]
     private int? playerID = null;
 
+    void Update() {
+        if (isAttached) {
+            transform.position = transform.parent.position;
+        }
+    }
 	void OnEnable() {
         EventManager.StartListeningTypeInt(Enum.GetName(typeof(FoodColor),color), AssignPlayer);
         EventManager.StartListeningTypeInt("GrabMochi", AttachToPlayer);
@@ -34,8 +40,9 @@ public class Food : MonoBehaviour {
 
     void AttachToPlayer(int id) {
         if(id == playerID) {
-            int adjustedID = (int)playerID++;
-            //transform.parent = GameObject.Find("Player" + adjustedID).transform;
+            isAttached = true;
+            int adjustedID = (int)playerID + 1;
+            transform.parent = GameObject.Find("Player" + adjustedID).transform;
         }
     }
 }
