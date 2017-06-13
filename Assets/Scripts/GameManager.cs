@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
     public GameState state;
     Dictionary<int, bool> playersLocked;
     public Dictionary<string, Vector2> mochiLocations;
+    public Dictionary<FoodColor, bool> mochisGrabbed;
 
     IEnumerator MenuState() {
         Debug.Log("Entering Menu State");
@@ -97,17 +98,25 @@ public class GameManager : MonoBehaviour {
             mochiLocations.Add("Green", GameObject.Find("GreenMochi").transform.position);
             mochiLocations.Add("Orange", GameObject.Find("OrangeMochi").transform.position);
             mochiLocations.Add("Pink", GameObject.Find("PinkMochi").transform.position);
+            
+            //It was at this moment I realized: I should just have references to the mochi objects.
+            mochisGrabbed = new Dictionary<FoodColor, bool>();
+            mochisGrabbed.Add(FoodColor.Green, false);
+            mochisGrabbed.Add(FoodColor.Orange, false);
+            mochisGrabbed.Add(FoodColor.Pink, false);
         }
     }
 
     void OnEnable() {
         EventManager.StartListeningTypeInt("PlayerLocked", PlayerLocked);
         EventManager.StartListeningTypeInt("PlayerUnlocked", PlayerUnlocked);
+        EventManager.StartListeningTypeInt("MochiGrabbed", MochiGrab);
     }
 
     void OnDisable() {
         EventManager.StartListeningTypeInt("PlayerLocked", PlayerLocked);
         EventManager.StartListeningTypeInt("PlayerUnlocked", PlayerUnlocked);
+        EventManager.StopListeningTypeInt("MochiGrabbed", MochiGrab);
     }
 
 	// Use this for initialization
@@ -122,6 +131,9 @@ public class GameManager : MonoBehaviour {
             case GameState.Decision:
                 DecisionStateLogic();
                 break;
+            case GameState.Scramble:
+                ScrambleStateLogic();
+                break;
         }
 	}
 
@@ -134,11 +146,24 @@ public class GameManager : MonoBehaviour {
         state = GameState.Scramble;
     }
 
+    void ScrambleStateLogic() {
+        foreach(KeyValuePair<FoodColor,bool> mochi in mochisGrabbed) {
+            if (!mochi.Value) {
+                return;
+            }
+        }
+        state = GameState.EndRound;
+    }
+
     void PlayerLocked(int player) {
         playersLocked[player] = true;
     }
 
     void PlayerUnlocked(int player) {
         playersLocked[player] = false;
+    }
+
+    void MochiGrab(int mochi) {
+        mochisGrabbed[(FoodColor)mochi] = true;
     }
 }

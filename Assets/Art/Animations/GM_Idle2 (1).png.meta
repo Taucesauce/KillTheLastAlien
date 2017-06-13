@@ -1,69 +1,68 @@
 fileFormatVersion: 2
-guid: 29852cd7a45dae64c9aa0f26377950db
-timeCreated: 1497322418
+guid: 301e4932defb7a841b453f2d0d152414
+timeCreated: 1497323535
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: GreenIdle_0
-    21300002: GreenIdle_1
-    21300004: GreenIdle_2
-    21300006: GreenIdle_3
-    21300008: GreenIdle_4
-    21300010: GreenIdle_5
-    21300012: GreenIdle_6
-    21300014: GreenIdle_7
-    21300016: GreenIdle_8
-    21300018: GreenIdle_9
-    21300020: GreenIdle_10
-    21300022: GreenIdle_11
-    21300024: GreenIdle_12
-    21300026: GreenIdle_13
-    21300028: GreenIdle_14
-    21300030: GreenIdle_15
-    21300032: GreenIdle_16
-    21300034: GreenIdle_17
-    21300036: GreenIdle_18
-    21300038: GreenIdle_19
-    21300040: GreenIdle_20
-    21300042: GreenIdle_21
-    21300044: GreenIdle_22
-    21300046: GreenIdle_23
-    21300048: GreenIdle_24
-    21300050: GreenIdle_25
-    21300052: GreenIdle_26
-    21300054: GreenIdle_27
-    21300056: GreenIdle_28
-    21300058: GreenIdle_29
-    21300060: GreenIdle_30
-    21300062: GreenIdle_31
-    21300064: GreenIdle_32
-    21300066: GreenIdle_33
-    21300068: GreenIdle_34
-    21300070: GreenIdle_35
-    21300072: GreenIdle_36
-    21300074: GreenIdle_37
-    21300076: GreenIdle_38
-    21300078: GreenIdle_39
-    21300080: GreenIdle_40
-    21300082: GreenIdle_41
-    21300084: GreenIdle_42
-    21300086: GreenIdle_43
-    21300088: GreenIdle_44
-    21300090: GreenIdle_45
-    21300092: GreenIdle_46
-    21300094: GreenIdle_47
-    21300096: GreenIdle_48
-    21300098: GreenIdle_49
-    21300100: GreenIdle_50
-    21300102: GreenIdle_51
-    21300104: GreenIdle_52
-    21300106: GreenIdle_53
-    21300108: GreenIdle_54
-    21300110: GreenIdle_55
-    21300112: GreenIdle_56
-    21300114: GreenIdle_57
-    21300116: GreenIdle_58
-    21300118: GreenIdle_59
+    21300000: GM_Idle2 (1)_0
+    21300002: GM_Idle2 (1)_1
+    21300004: GM_Idle2 (1)_2
+    21300006: GM_Idle2 (1)_3
+    21300008: GM_Idle2 (1)_4
+    21300010: GM_Idle2 (1)_5
+    21300012: GM_Idle2 (1)_6
+    21300014: GM_Idle2 (1)_7
+    21300016: GM_Idle2 (1)_8
+    21300018: GM_Idle2 (1)_9
+    21300020: GM_Idle2 (1)_10
+    21300022: GM_Idle2 (1)_11
+    21300024: GM_Idle2 (1)_12
+    21300026: GM_Idle2 (1)_13
+    21300028: GM_Idle2 (1)_14
+    21300030: GM_Idle2 (1)_15
+    21300032: GM_Idle2 (1)_16
+    21300034: GM_Idle2 (1)_17
+    21300036: GM_Idle2 (1)_18
+    21300038: GM_Idle2 (1)_19
+    21300040: GM_Idle2 (1)_20
+    21300042: GM_Idle2 (1)_21
+    21300044: GM_Idle2 (1)_22
+    21300046: GM_Idle2 (1)_23
+    21300048: GM_Idle2 (1)_24
+    21300050: GM_Idle2 (1)_25
+    21300052: GM_Idle2 (1)_26
+    21300054: GM_Idle2 (1)_27
+    21300056: GM_Idle2 (1)_28
+    21300058: GM_Idle2 (1)_29
+    21300060: GM_Idle2 (1)_30
+    21300062: GM_Idle2 (1)_31
+    21300064: GM_Idle2 (1)_32
+    21300066: GM_Idle2 (1)_33
+    21300068: GM_Idle2 (1)_34
+    21300070: GM_Idle2 (1)_35
+    21300072: GM_Idle2 (1)_36
+    21300074: GM_Idle2 (1)_37
+    21300076: GM_Idle2 (1)_38
+    21300078: GM_Idle2 (1)_39
+    21300080: GM_Idle2 (1)_40
+    21300082: GM_Idle2 (1)_41
+    21300084: GM_Idle2 (1)_42
+    21300086: GM_Idle2 (1)_43
+    21300088: GM_Idle2 (1)_44
+    21300090: GM_Idle2 (1)_45
+    21300092: GM_Idle2 (1)_46
+    21300094: GM_Idle2 (1)_47
+    21300096: GM_Idle2 (1)_48
+    21300098: GM_Idle2 (1)_49
+    21300100: GM_Idle2 (1)_50
+    21300102: GM_Idle2 (1)_51
+    21300104: GM_Idle2 (1)_52
+    21300106: GM_Idle2 (1)_53
+    21300108: GM_Idle2 (1)_54
+    21300110: GM_Idle2 (1)_55
+    21300112: GM_Idle2 (1)_56
+    21300114: GM_Idle2 (1)_57
+    21300116: GM_Idle2 (1)_58
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -130,7 +129,319 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GreenIdle_0
+      name: GM_Idle2 (1)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_1
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_2
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_3
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_4
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_5
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_7
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_8
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_9
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_10
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_11
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_13
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_14
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_15
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_16
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_17
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_19
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_20
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_21
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_22
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_23
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: GM_Idle2 (1)_24
       rect:
         serializedVersion: 2
         x: 0
@@ -143,10 +454,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_1
+      name: GM_Idle2 (1)_25
       rect:
         serializedVersion: 2
-        x: 370
+        x: 371
         y: 1755
         width: 370
         height: 350
@@ -156,10 +467,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_2
+      name: GM_Idle2 (1)_26
       rect:
         serializedVersion: 2
-        x: 740
+        x: 742
         y: 1755
         width: 370
         height: 350
@@ -169,10 +480,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_3
+      name: GM_Idle2 (1)_27
       rect:
         serializedVersion: 2
-        x: 1110
+        x: 1113
         y: 1755
         width: 370
         height: 350
@@ -182,10 +493,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_4
+      name: GM_Idle2 (1)_28
       rect:
         serializedVersion: 2
-        x: 1480
+        x: 1484
         y: 1755
         width: 370
         height: 350
@@ -195,10 +506,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_5
+      name: GM_Idle2 (1)_29
       rect:
         serializedVersion: 2
-        x: 1850
+        x: 1855
         y: 1755
         width: 370
         height: 350
@@ -208,63 +519,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_6
-      rect:
-        serializedVersion: 2
-        x: 2220
-        y: 1755
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_7
-      rect:
-        serializedVersion: 2
-        x: 2590
-        y: 1755
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_8
-      rect:
-        serializedVersion: 2
-        x: 2960
-        y: 1755
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_9
-      rect:
-        serializedVersion: 2
-        x: 3330
-        y: 1755
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_10
+      name: GM_Idle2 (1)_30
       rect:
         serializedVersion: 2
         x: 0
-        y: 1405
+        y: 1404
         width: 370
         height: 350
       alignment: 0
@@ -273,11 +532,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_11
+      name: GM_Idle2 (1)_31
       rect:
         serializedVersion: 2
-        x: 370
-        y: 1405
+        x: 371
+        y: 1404
         width: 370
         height: 350
       alignment: 0
@@ -286,11 +545,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_12
+      name: GM_Idle2 (1)_32
       rect:
         serializedVersion: 2
-        x: 740
-        y: 1405
+        x: 742
+        y: 1404
         width: 370
         height: 350
       alignment: 0
@@ -299,11 +558,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_13
+      name: GM_Idle2 (1)_33
       rect:
         serializedVersion: 2
-        x: 1110
-        y: 1405
+        x: 1113
+        y: 1404
         width: 370
         height: 350
       alignment: 0
@@ -312,11 +571,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_14
+      name: GM_Idle2 (1)_34
       rect:
         serializedVersion: 2
-        x: 1480
-        y: 1405
+        x: 1484
+        y: 1404
         width: 370
         height: 350
       alignment: 0
@@ -325,11 +584,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_15
+      name: GM_Idle2 (1)_35
       rect:
         serializedVersion: 2
-        x: 1850
-        y: 1405
+        x: 1855
+        y: 1404
         width: 370
         height: 350
       alignment: 0
@@ -338,63 +597,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_16
-      rect:
-        serializedVersion: 2
-        x: 2220
-        y: 1405
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_17
-      rect:
-        serializedVersion: 2
-        x: 2590
-        y: 1405
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_18
-      rect:
-        serializedVersion: 2
-        x: 2960
-        y: 1405
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_19
-      rect:
-        serializedVersion: 2
-        x: 3330
-        y: 1405
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_20
+      name: GM_Idle2 (1)_36
       rect:
         serializedVersion: 2
         x: 0
-        y: 1055
+        y: 1053
         width: 370
         height: 350
       alignment: 0
@@ -403,11 +610,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_21
+      name: GM_Idle2 (1)_37
       rect:
         serializedVersion: 2
-        x: 370
-        y: 1055
+        x: 371
+        y: 1053
         width: 370
         height: 350
       alignment: 0
@@ -416,11 +623,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_22
+      name: GM_Idle2 (1)_38
       rect:
         serializedVersion: 2
-        x: 740
-        y: 1055
+        x: 742
+        y: 1053
         width: 370
         height: 350
       alignment: 0
@@ -429,11 +636,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_23
+      name: GM_Idle2 (1)_39
       rect:
         serializedVersion: 2
-        x: 1110
-        y: 1055
+        x: 1113
+        y: 1053
         width: 370
         height: 350
       alignment: 0
@@ -442,11 +649,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_24
+      name: GM_Idle2 (1)_40
       rect:
         serializedVersion: 2
-        x: 1480
-        y: 1055
+        x: 1484
+        y: 1053
         width: 370
         height: 350
       alignment: 0
@@ -455,11 +662,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_25
+      name: GM_Idle2 (1)_41
       rect:
         serializedVersion: 2
-        x: 1850
-        y: 1055
+        x: 1855
+        y: 1053
         width: 370
         height: 350
       alignment: 0
@@ -468,63 +675,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_26
-      rect:
-        serializedVersion: 2
-        x: 2220
-        y: 1055
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_27
-      rect:
-        serializedVersion: 2
-        x: 2590
-        y: 1055
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_28
-      rect:
-        serializedVersion: 2
-        x: 2960
-        y: 1055
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_29
-      rect:
-        serializedVersion: 2
-        x: 3330
-        y: 1055
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_30
+      name: GM_Idle2 (1)_42
       rect:
         serializedVersion: 2
         x: 0
-        y: 705
+        y: 702
         width: 370
         height: 350
       alignment: 0
@@ -533,11 +688,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_31
+      name: GM_Idle2 (1)_43
       rect:
         serializedVersion: 2
-        x: 370
-        y: 705
+        x: 371
+        y: 702
         width: 370
         height: 350
       alignment: 0
@@ -546,11 +701,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_32
+      name: GM_Idle2 (1)_44
       rect:
         serializedVersion: 2
-        x: 740
-        y: 705
+        x: 742
+        y: 702
         width: 370
         height: 350
       alignment: 0
@@ -559,11 +714,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_33
+      name: GM_Idle2 (1)_45
       rect:
         serializedVersion: 2
-        x: 1110
-        y: 705
+        x: 1113
+        y: 702
         width: 370
         height: 350
       alignment: 0
@@ -572,11 +727,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_34
+      name: GM_Idle2 (1)_46
       rect:
         serializedVersion: 2
-        x: 1480
-        y: 705
+        x: 1484
+        y: 702
         width: 370
         height: 350
       alignment: 0
@@ -585,11 +740,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_35
+      name: GM_Idle2 (1)_47
       rect:
         serializedVersion: 2
-        x: 1850
-        y: 705
+        x: 1855
+        y: 702
         width: 370
         height: 350
       alignment: 0
@@ -598,63 +753,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_36
-      rect:
-        serializedVersion: 2
-        x: 2220
-        y: 705
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_37
-      rect:
-        serializedVersion: 2
-        x: 2590
-        y: 705
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_38
-      rect:
-        serializedVersion: 2
-        x: 2960
-        y: 705
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_39
-      rect:
-        serializedVersion: 2
-        x: 3330
-        y: 705
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_40
+      name: GM_Idle2 (1)_48
       rect:
         serializedVersion: 2
         x: 0
-        y: 355
+        y: 351
         width: 370
         height: 350
       alignment: 0
@@ -663,11 +766,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_41
+      name: GM_Idle2 (1)_49
       rect:
         serializedVersion: 2
-        x: 370
-        y: 355
+        x: 371
+        y: 351
         width: 370
         height: 350
       alignment: 0
@@ -676,11 +779,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_42
+      name: GM_Idle2 (1)_50
       rect:
         serializedVersion: 2
-        x: 740
-        y: 355
+        x: 742
+        y: 351
         width: 370
         height: 350
       alignment: 0
@@ -689,11 +792,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_43
+      name: GM_Idle2 (1)_51
       rect:
         serializedVersion: 2
-        x: 1110
-        y: 355
+        x: 1113
+        y: 351
         width: 370
         height: 350
       alignment: 0
@@ -702,11 +805,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_44
+      name: GM_Idle2 (1)_52
       rect:
         serializedVersion: 2
-        x: 1480
-        y: 355
+        x: 1484
+        y: 351
         width: 370
         height: 350
       alignment: 0
@@ -715,11 +818,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_45
+      name: GM_Idle2 (1)_53
       rect:
         serializedVersion: 2
-        x: 1850
-        y: 355
+        x: 1855
+        y: 351
         width: 370
         height: 350
       alignment: 0
@@ -728,63 +831,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_46
-      rect:
-        serializedVersion: 2
-        x: 2220
-        y: 355
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_47
-      rect:
-        serializedVersion: 2
-        x: 2590
-        y: 355
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_48
-      rect:
-        serializedVersion: 2
-        x: 2960
-        y: 355
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_49
-      rect:
-        serializedVersion: 2
-        x: 3330
-        y: 355
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_50
+      name: GM_Idle2 (1)_54
       rect:
         serializedVersion: 2
         x: 0
-        y: 5
+        y: 0
         width: 370
         height: 350
       alignment: 0
@@ -793,11 +844,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_51
+      name: GM_Idle2 (1)_55
       rect:
         serializedVersion: 2
-        x: 370
-        y: 5
+        x: 371
+        y: 0
         width: 370
         height: 350
       alignment: 0
@@ -806,11 +857,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_52
+      name: GM_Idle2 (1)_56
       rect:
         serializedVersion: 2
-        x: 740
-        y: 5
+        x: 742
+        y: 0
         width: 370
         height: 350
       alignment: 0
@@ -819,11 +870,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_53
+      name: GM_Idle2 (1)_57
       rect:
         serializedVersion: 2
-        x: 1110
-        y: 5
+        x: 1113
+        y: 0
         width: 370
         height: 350
       alignment: 0
@@ -832,76 +883,11 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: GreenIdle_54
+      name: GM_Idle2 (1)_58
       rect:
         serializedVersion: 2
-        x: 1480
-        y: 5
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_55
-      rect:
-        serializedVersion: 2
-        x: 1850
-        y: 5
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_56
-      rect:
-        serializedVersion: 2
-        x: 2220
-        y: 5
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_57
-      rect:
-        serializedVersion: 2
-        x: 2590
-        y: 5
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_58
-      rect:
-        serializedVersion: 2
-        x: 2960
-        y: 5
-        width: 370
-        height: 350
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: GreenIdle_59
-      rect:
-        serializedVersion: 2
-        x: 3330
-        y: 5
+        x: 1484
+        y: 0
         width: 370
         height: 350
       alignment: 0

@@ -43,6 +43,8 @@ public class Food : MonoBehaviour {
             isAttached = true;
             int adjustedID = (int)playerID + 1;
             transform.parent = GameObject.Find("Player" + adjustedID).transform;
+            EventManager.TriggerEvent(playerID + "GrabbedMochi");
+            EventManager.TriggerIntEvent("MochiGrabbed", (int)color);
         }
     }
 }

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
     public enum PlayerState {
         Idle, // In-between states during "scramble"
         Selecting, //Expecting Lock-In results
+        Scramble, //Free for all input accepting, instant grab.
         Grabbing, //Animation State, locked input.
         Locked //Has food, during countdown, finished selecting in countdown phase, etc.
     }
@@ -49,6 +50,15 @@ public class Player : MonoBehaviour {
         NextState();
     }
 
+    IEnumerator ScrambleState() {
+        Debug.Log("Entering Scramble for Player " + playerId);
+        //StartLerp();
+        while (state == PlayerState.Scramble) {
+            yield return 0;
+        }
+        Debug.Log("Exiting Scramble for Player " + playerId);
+        NextState();
+    }
     IEnumerator LockedState() {
         Debug.Log("Entering Locked for Player " + playerId);
         EventManager.TriggerIntEvent("PlayerLocked", playerId);
@@ -72,7 +82,7 @@ public class Player : MonoBehaviour {
     bool leftPressed = false;
     bool midPressed = false;
     bool rightPressed = false;
-    FoodColor selection;
+    FoodColor? selection;
 
     //Grabbing vars
     Vector2 originalLocation;
@@ -83,10 +93,10 @@ public class Player : MonoBehaviour {
 
     private float startTime;
     private float distance;
-    float distCovered;
     float fracJourney;
 
     bool reachedMochi = false;
+    bool hasMochi = false;
 
     void Awake() {
         player = ReInput.players.GetPlayer(playerId); //use to assign map and access button states
@@ -97,10 +107,12 @@ public class Player : MonoBehaviour {
 
     void OnEnable() {
         EventManager.StartListeningTypeInt("GameStateChange", ChangeState);
+        EventManager.StartListening(playerId + "GrabbedMochi", GetMochi);
     }
 
     void OnDisable() {
         EventManager.StopListeningTypeInt("GameStateChange", ChangeState);
+        EventManager.StopListening(playerId + "GrabbedMochi", GetMochi);
     }
 
     // Use this for initialization
@@ -124,22 +136,42 @@ public class Player : MonoBehaviour {
     }
 
     private void ProcessInput() {
-        if (state == PlayerState.Selecting) {
-            if (leftPressed) {
-                EventManager.TriggerIntEvent("Green", playerId);
-                selection = FoodColor.Green;
-                state = PlayerState.Locked;
-            }
-            if (midPressed) {
-                EventManager.TriggerIntEvent("Orange", playerId);
-                selection = FoodColor.Orange;
-                state = PlayerState.Locked;
-            }
-            if (rightPressed) {
-                EventManager.TriggerIntEvent("Pink", playerId);
-                selection = FoodColor.Pink;
-                state = PlayerState.Locked;
-            }
+        switch (state) {
+            case PlayerState.Selecting:
+                if (leftPressed) {
+                    EventManager.TriggerIntEvent("Green", playerId);
+                    selection = FoodColor.Green;
+                    state = PlayerState.Locked;
+                }
+                if (midPressed) {
+                    EventManager.TriggerIntEvent("Orange", playerId);
+                    selection = FoodColor.Orange;
+                    state = PlayerState.Locked;
+                }
+                if (rightPressed) {
+                    EventManager.TriggerIntEvent("Pink", playerId);
+                    selection = FoodColor.Pink;
+                    state = PlayerState.Locked;
+                }
+                break;
+            case PlayerState.Scramble:
+                if (leftPressed) {
+                    EventManager.TriggerIntEvent("Green", playerId);
+                    selection = FoodColor.Green;
+                    state = PlayerState.Grabbing;
+                }
+                if (midPressed) {
+                    EventManager.TriggerIntEvent("Orange", playerId);
+                    selection = FoodColor.Orange;
+                    state = PlayerState.Grabbing;
+                }
+                if (rightPressed) {
+                    EventManager.TriggerIntEvent("Pink", playerId);
+                    selection = FoodColor.Pink;
+                    state = PlayerState.Grabbing;
+                }
+                break;
+                   
         }
     }
 
@@ -164,6 +196,10 @@ public class Player : MonoBehaviour {
         }
     }
 
+    void GetMochi() {
+        hasMochi = true;
+    }
+
     void StartLerp() {
         //Set start vars
         selectionLocation = GameManager.Instance.mochiLocations[Enum.GetName(typeof(FoodColor), selection)];
@@ -178,14 +214,20 @@ public class Player : MonoBehaviour {
     }
 
     void UpdateLerp() {
-        if(fracJourney == 1) {
-            Debug.Log("Aight");
-        }
         if((Vector2)transform.position == selectionLocation && reachedMochi == false) {
             startTime = 0;
             distance = Vector2.Distance(selectionLocation, originalLocation);
             reachedMochi = true;
             EventManager.TriggerIntEvent("GrabMochi", playerId);
+        } else if((Vector2)transform.position == originalLocation && reachedMochi == true) {
+            if (hasMochi) {
+                state = PlayerState.Idle;
+                return;
+            } else {
+                ResetPlayerVariables();
+                state = PlayerState.Scramble;
+                return;
+            }
         }
         if (reachedMochi) {
             startTime += Time.deltaTime;
@@ -196,5 +238,10 @@ public class Player : MonoBehaviour {
             fracJourney = startTime / lerpTime;
             transform.position = Vector3.Lerp(originalLocation, selectionLocation, fracJourney);
         }
+    }
+
+    void ResetPlayerVariables() {
+        reachedMochi = false;
+        selection = null;
     }
 }
