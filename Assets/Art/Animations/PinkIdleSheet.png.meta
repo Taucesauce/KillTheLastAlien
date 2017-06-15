@@ -1,68 +1,68 @@
 fileFormatVersion: 2
-guid: 23eb2c47887e22e4dbc7ea85c9f1c5a6
-timeCreated: 1497143134
+guid: 59bc844aaa5a60b489a617420ef7ec08
+timeCreated: 1497491791
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: PinkIdle_0
-    21300002: PinkIdle_1
-    21300004: PinkIdle_2
-    21300006: PinkIdle_3
-    21300008: PinkIdle_4
-    21300010: PinkIdle_5
-    21300012: PinkIdle_6
-    21300014: PinkIdle_7
-    21300016: PinkIdle_8
-    21300018: PinkIdle_9
-    21300020: PinkIdle_10
-    21300022: PinkIdle_11
-    21300024: PinkIdle_12
-    21300026: PinkIdle_13
-    21300028: PinkIdle_14
-    21300030: PinkIdle_15
-    21300032: PinkIdle_16
-    21300034: PinkIdle_17
-    21300036: PinkIdle_18
-    21300038: PinkIdle_19
-    21300040: PinkIdle_20
-    21300042: PinkIdle_21
-    21300044: PinkIdle_22
-    21300046: PinkIdle_23
-    21300048: PinkIdle_24
-    21300050: PinkIdle_25
-    21300052: PinkIdle_26
-    21300054: PinkIdle_27
-    21300056: PinkIdle_28
-    21300058: PinkIdle_29
-    21300060: PinkIdle_30
-    21300062: PinkIdle_31
-    21300064: PinkIdle_32
-    21300066: PinkIdle_33
-    21300068: PinkIdle_34
-    21300070: PinkIdle_35
-    21300072: PinkIdle_36
-    21300074: PinkIdle_37
-    21300076: PinkIdle_38
-    21300078: PinkIdle_39
-    21300080: PinkIdle_40
-    21300082: PinkIdle_41
-    21300084: PinkIdle_42
-    21300086: PinkIdle_43
-    21300088: PinkIdle_44
-    21300090: PinkIdle_45
-    21300092: PinkIdle_46
-    21300094: PinkIdle_47
-    21300096: PinkIdle_48
-    21300098: PinkIdle_49
-    21300100: PinkIdle_50
-    21300102: PinkIdle_51
-    21300104: PinkIdle_52
-    21300106: PinkIdle_53
-    21300108: PinkIdle_54
-    21300110: PinkIdle_55
-    21300112: PinkIdle_56
-    21300114: PinkIdle_57
-    21300116: PinkIdle_58
+    21300000: PinkIdleSheet_0
+    21300002: PinkIdleSheet_1
+    21300004: PinkIdleSheet_2
+    21300006: PinkIdleSheet_3
+    21300008: PinkIdleSheet_4
+    21300010: PinkIdleSheet_5
+    21300012: PinkIdleSheet_6
+    21300014: PinkIdleSheet_7
+    21300016: PinkIdleSheet_8
+    21300018: PinkIdleSheet_9
+    21300020: PinkIdleSheet_10
+    21300022: PinkIdleSheet_11
+    21300024: PinkIdleSheet_12
+    21300026: PinkIdleSheet_13
+    21300028: PinkIdleSheet_14
+    21300030: PinkIdleSheet_15
+    21300032: PinkIdleSheet_16
+    21300034: PinkIdleSheet_17
+    21300036: PinkIdleSheet_18
+    21300038: PinkIdleSheet_19
+    21300040: PinkIdleSheet_20
+    21300042: PinkIdleSheet_21
+    21300044: PinkIdleSheet_22
+    21300046: PinkIdleSheet_23
+    21300048: PinkIdleSheet_24
+    21300050: PinkIdleSheet_25
+    21300052: PinkIdleSheet_26
+    21300054: PinkIdleSheet_27
+    21300056: PinkIdleSheet_28
+    21300058: PinkIdleSheet_29
+    21300060: PinkIdleSheet_30
+    21300062: PinkIdleSheet_31
+    21300064: PinkIdleSheet_32
+    21300066: PinkIdleSheet_33
+    21300068: PinkIdleSheet_34
+    21300070: PinkIdleSheet_35
+    21300072: PinkIdleSheet_36
+    21300074: PinkIdleSheet_37
+    21300076: PinkIdleSheet_38
+    21300078: PinkIdleSheet_39
+    21300080: PinkIdleSheet_40
+    21300082: PinkIdleSheet_41
+    21300084: PinkIdleSheet_42
+    21300086: PinkIdleSheet_43
+    21300088: PinkIdleSheet_44
+    21300090: PinkIdleSheet_45
+    21300092: PinkIdleSheet_46
+    21300094: PinkIdleSheet_47
+    21300096: PinkIdleSheet_48
+    21300098: PinkIdleSheet_49
+    21300100: PinkIdleSheet_50
+    21300102: PinkIdleSheet_51
+    21300104: PinkIdleSheet_52
+    21300106: PinkIdleSheet_53
+    21300108: PinkIdleSheet_54
+    21300110: PinkIdleSheet_55
+    21300112: PinkIdleSheet_56
+    21300114: PinkIdleSheet_57
+    21300116: PinkIdleSheet_58
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -129,767 +129,767 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PinkIdle_0
+      name: PinkIdleSheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1757
-        width: 371
-        height: 221
+        y: 3159
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_1
+      name: PinkIdleSheet_1
       rect:
         serializedVersion: 2
-        x: 373
-        y: 1757
-        width: 368
-        height: 223
+        x: 371
+        y: 3159
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_2
+      name: PinkIdleSheet_2
       rect:
         serializedVersion: 2
-        x: 750
+        x: 742
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 3159
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_7
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_8
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 2808
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_13
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_14
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_15
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_16
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_17
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 2457
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_19
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_20
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_21
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_22
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_23
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 2106
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 1755
-        width: 355
-        height: 229
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_3
+      name: PinkIdleSheet_25
       rect:
         serializedVersion: 2
-        x: 1125
+        x: 371
         y: 1755
-        width: 348
-        height: 232
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_4
+      name: PinkIdleSheet_26
       rect:
         serializedVersion: 2
-        x: 1500
+        x: 742
         y: 1755
-        width: 339
-        height: 236
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_5
+      name: PinkIdleSheet_27
       rect:
         serializedVersion: 2
-        x: 1864
+        x: 1113
         y: 1755
-        width: 351
-        height: 221
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_6
+      name: PinkIdleSheet_28
       rect:
         serializedVersion: 2
-        x: 2239
+        x: 1484
         y: 1755
-        width: 344
-        height: 230
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_7
+      name: PinkIdleSheet_29
       rect:
         serializedVersion: 2
-        x: 2609
+        x: 1855
         y: 1755
-        width: 347
-        height: 232
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_8
+      name: PinkIdleSheet_30
       rect:
         serializedVersion: 2
-        x: 2975
-        y: 1755
-        width: 358
-        height: 229
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_9
-      rect:
-        serializedVersion: 2
-        x: 3344
-        y: 1757
-        width: 361
-        height: 227
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_10
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 1406
-        width: 364
-        height: 224
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_11
-      rect:
-        serializedVersion: 2
-        x: 377
-        y: 1406
-        width: 358
-        height: 224
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_12
-      rect:
-        serializedVersion: 2
-        x: 752
+        x: 0
         y: 1404
-        width: 351
-        height: 230
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_13
+      name: PinkIdleSheet_31
       rect:
         serializedVersion: 2
-        x: 1127
+        x: 371
         y: 1404
-        width: 344
-        height: 234
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_14
+      name: PinkIdleSheet_32
       rect:
         serializedVersion: 2
-        x: 1498
+        x: 742
         y: 1404
-        width: 343
-        height: 232
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_15
+      name: PinkIdleSheet_33
       rect:
         serializedVersion: 2
-        x: 1866
+        x: 1113
         y: 1404
-        width: 348
-        height: 226
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_16
+      name: PinkIdleSheet_34
       rect:
         serializedVersion: 2
-        x: 2239
+        x: 1484
         y: 1404
-        width: 344
-        height: 234
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_17
+      name: PinkIdleSheet_35
       rect:
         serializedVersion: 2
-        x: 2605
-        y: 1406
-        width: 355
-        height: 228
+        x: 1855
+        y: 1404
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_18
+      name: PinkIdleSheet_36
       rect:
         serializedVersion: 2
-        x: 2967
-        y: 1406
-        width: 372
-        height: 221
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_19
-      rect:
-        serializedVersion: 2
-        x: 3366
-        y: 1406
-        width: 317
-        height: 252
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_20
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 1053
-        width: 346
-        height: 228
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_21
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 1053
-        width: 352
-        height: 221
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_22
-      rect:
-        serializedVersion: 2
-        x: 746
-        y: 1053
-        width: 363
-        height: 210
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_23
-      rect:
-        serializedVersion: 2
-        x: 1114
+        x: 0
         y: 1053
         width: 370
-        height: 199
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_24
+      name: PinkIdleSheet_37
       rect:
         serializedVersion: 2
-        x: 1487
+        x: 371
         y: 1053
-        width: 364
-        height: 204
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_25
-      rect:
-        serializedVersion: 2
-        x: 1869
-        y: 1054
-        width: 341
-        height: 234
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_26
-      rect:
-        serializedVersion: 2
-        x: 2235
-        y: 1054
-        width: 354
-        height: 229
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_27
-      rect:
-        serializedVersion: 2
-        x: 2598
-        y: 1054
-        width: 369
-        height: 223
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_28
-      rect:
-        serializedVersion: 2
-        x: 2989
-        y: 1054
-        width: 328
-        height: 247
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_29
-      rect:
-        serializedVersion: 2
-        x: 3384
-        y: 1054
-        width: 281
-        height: 272
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_30
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 703
-        width: 349
-        height: 223
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_31
-      rect:
-        serializedVersion: 2
-        x: 377
-        y: 701
-        width: 358
-        height: 214
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_32
-      rect:
-        serializedVersion: 2
-        x: 745
-        y: 701
-        width: 365
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_33
-      rect:
-        serializedVersion: 2
-        x: 1114
-        y: 701
         width: 370
-        height: 199
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_34
+      name: PinkIdleSheet_38
       rect:
         serializedVersion: 2
-        x: 1491
-        y: 701
-        width: 357
-        height: 214
+        x: 742
+        y: 1053
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_35
+      name: PinkIdleSheet_39
       rect:
         serializedVersion: 2
-        x: 1866
-        y: 703
-        width: 349
-        height: 230
+        x: 1113
+        y: 1053
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_36
+      name: PinkIdleSheet_40
       rect:
         serializedVersion: 2
-        x: 2228
-        y: 703
-        width: 366
-        height: 225
+        x: 1484
+        y: 1053
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_37
+      name: PinkIdleSheet_41
       rect:
         serializedVersion: 2
-        x: 2614
-        y: 703
-        width: 337
-        height: 241
+        x: 1855
+        y: 1053
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_38
+      name: PinkIdleSheet_42
       rect:
         serializedVersion: 2
-        x: 3007
-        y: 703
-        width: 294
-        height: 266
+        x: 0
+        y: 702
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_39
+      name: PinkIdleSheet_43
       rect:
         serializedVersion: 2
-        x: 3384
-        y: 703
-        width: 281
-        height: 273
+        x: 371
+        y: 702
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_40
+      name: PinkIdleSheet_44
       rect:
         serializedVersion: 2
-        x: 7
+        x: 742
+        y: 702
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_45
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 702
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_46
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 702
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_47
+      rect:
+        serializedVersion: 2
+        x: 1855
+        y: 702
+        width: 370
+        height: 350
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PinkIdleSheet_48
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 351
-        width: 355
-        height: 218
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_41
+      name: PinkIdleSheet_49
       rect:
         serializedVersion: 2
-        x: 375
+        x: 371
         y: 351
-        width: 364
-        height: 205
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_42
+      name: PinkIdleSheet_50
       rect:
         serializedVersion: 2
-        x: 741
-        y: 350
-        width: 373
-        height: 195
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_43
-      rect:
-        serializedVersion: 2
-        x: 1118
+        x: 742
         y: 351
-        width: 362
-        height: 209
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_44
+      name: PinkIdleSheet_51
       rect:
         serializedVersion: 2
-        x: 1493
+        x: 1113
         y: 351
-        width: 353
-        height: 218
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_45
+      name: PinkIdleSheet_52
       rect:
         serializedVersion: 2
-        x: 1859
+        x: 1484
         y: 351
-        width: 362
-        height: 227
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_46
+      name: PinkIdleSheet_53
       rect:
         serializedVersion: 2
-        x: 2237
+        x: 1855
         y: 351
-        width: 350
-        height: 236
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_47
+      name: PinkIdleSheet_54
       rect:
         serializedVersion: 2
-        x: 2630
-        y: 351
-        width: 305
-        height: 259
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_48
-      rect:
-        serializedVersion: 2
-        x: 3018
-        y: 351
-        width: 270
-        height: 279
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_49
-      rect:
-        serializedVersion: 2
-        x: 3380
-        y: 351
-        width: 288
-        height: 270
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_50
-      rect:
-        serializedVersion: 2
-        x: 38
+        x: 0
         y: 0
-        width: 295
-        height: 264
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_51
+      name: PinkIdleSheet_55
       rect:
         serializedVersion: 2
-        x: 404
+        x: 371
         y: 0
-        width: 304
-        height: 261
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_52
+      name: PinkIdleSheet_56
       rect:
         serializedVersion: 2
-        x: 772
+        x: 742
         y: 0
-        width: 311
-        height: 255
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_53
+      name: PinkIdleSheet_57
       rect:
         serializedVersion: 2
-        x: 1138
-        y: 2
-        width: 320
-        height: 250
+        x: 1113
+        y: 0
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PinkIdle_54
+      name: PinkIdleSheet_58
       rect:
         serializedVersion: 2
-        x: 1505
-        y: 2
-        width: 330
-        height: 244
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_55
-      rect:
-        serializedVersion: 2
-        x: 1871
-        y: 2
-        width: 339
-        height: 239
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_56
-      rect:
-        serializedVersion: 2
-        x: 2237
-        y: 2
-        width: 348
-        height: 235
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_57
-      rect:
-        serializedVersion: 2
-        x: 2605
-        y: 2
-        width: 355
-        height: 230
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PinkIdle_58
-      rect:
-        serializedVersion: 2
-        x: 2971
-        y: 2
-        width: 364
-        height: 224
+        x: 1484
+        y: 0
+        width: 370
+        height: 350
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

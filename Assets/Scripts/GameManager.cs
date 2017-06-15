@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public GameState state;
-    Dictionary<int, bool> playersLocked;
+    [Header("Players")]
+    [SerializeField]
+    private GameObject[] players = new GameObject[4];
+    [Header("Mochis")]
+    [SerializeField]
+    private GameObject[] mochis = new GameObject[3];
+    [HideInInspector]
+    public GameObject[] Mochis { get { return mochis; } }
+
     public Dictionary<string, Vector2> mochiLocations;
-    public Dictionary<FoodColor, bool> mochisGrabbed;
 
     IEnumerator MenuState() {
         Debug.Log("Entering Menu State");
@@ -87,36 +94,20 @@ public class GameManager : MonoBehaviour {
     }
 
     void Init() {
-        if(playersLocked == null) {
-            playersLocked = new Dictionary<int, bool>();
-            playersLocked.Add(0, false);
-            playersLocked.Add(1, false);
-            playersLocked.Add(2, false);
-            playersLocked.Add(3, false);
-
+        if(mochiLocations == null) {
             mochiLocations = new Dictionary<string, Vector2>();
-            mochiLocations.Add("Green", GameObject.Find("GreenMochi").transform.position);
-            mochiLocations.Add("Orange", GameObject.Find("OrangeMochi").transform.position);
-            mochiLocations.Add("Pink", GameObject.Find("PinkMochi").transform.position);
-            
-            //It was at this moment I realized: I should just have references to the mochi objects.
-            mochisGrabbed = new Dictionary<FoodColor, bool>();
-            mochisGrabbed.Add(FoodColor.Green, false);
-            mochisGrabbed.Add(FoodColor.Orange, false);
-            mochisGrabbed.Add(FoodColor.Pink, false);
+            mochiLocations.Add("Green", (Vector2)mochis[(int)FoodColor.Green].GetComponent<Transform>().position);
+            mochiLocations.Add("Orange", (Vector2)mochis[(int)FoodColor.Orange].GetComponent<Transform>().position);
+            mochiLocations.Add("Pink", (Vector2)mochis[(int)FoodColor.Pink].GetComponent<Transform>().position);
         }
     }
 
     void OnEnable() {
-        EventManager.StartListeningTypeInt("PlayerLocked", PlayerLocked);
-        EventManager.StartListeningTypeInt("PlayerUnlocked", PlayerUnlocked);
-        EventManager.StartListeningTypeInt("MochiGrabbed", MochiGrab);
+        EventManager.StartListening("GameStart", GameStart);
     }
 
     void OnDisable() {
-        EventManager.StartListeningTypeInt("PlayerLocked", PlayerLocked);
-        EventManager.StartListeningTypeInt("PlayerUnlocked", PlayerUnlocked);
-        EventManager.StopListeningTypeInt("MochiGrabbed", MochiGrab);
+        EventManager.StopListening("GameStart", GameStart);
     }
 
 	// Use this for initialization
@@ -138,8 +129,8 @@ public class GameManager : MonoBehaviour {
 	}
 
     void DecisionStateLogic() {
-        foreach(KeyValuePair<int,bool> player in playersLocked) {
-            if (!player.Value) {
+        foreach(GameObject player in players) {
+            if (player.GetComponent<Player>().state == Player.PlayerState.Selecting) {
                 return;
             }
         }
@@ -147,23 +138,19 @@ public class GameManager : MonoBehaviour {
     }
 
     void ScrambleStateLogic() {
-        foreach(KeyValuePair<FoodColor,bool> mochi in mochisGrabbed) {
-            if (!mochi.Value) {
-                return;
+        int playersIdle = 0;
+        foreach(GameObject player in players) {
+            if (player.GetComponent<Player>().state == Player.PlayerState.Idle) {
+                playersIdle++;
             }
         }
-        state = GameState.EndRound;
+        if (playersIdle >= 3)
+            state = GameState.EndRound;
+        else
+            return;
     }
 
-    void PlayerLocked(int player) {
-        playersLocked[player] = true;
-    }
-
-    void PlayerUnlocked(int player) {
-        playersLocked[player] = false;
-    }
-
-    void MochiGrab(int mochi) {
-        mochisGrabbed[(FoodColor)mochi] = true;
+    void GameStart() {
+        state = GameState.Decision;
     }
 }

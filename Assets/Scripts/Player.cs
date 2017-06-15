@@ -117,8 +117,8 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+        originalLocation = transform.position;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -154,21 +154,32 @@ public class Player : MonoBehaviour {
                     state = PlayerState.Locked;
                 }
                 break;
+            //Not a fan of the alreadySelected but should work for the time being.
             case PlayerState.Scramble:
                 if (leftPressed) {
-                    EventManager.TriggerIntEvent("Green", playerId);
                     selection = FoodColor.Green;
-                    state = PlayerState.Grabbing;
+                    bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
+                    if (!alreadySelected) {
+                        state = PlayerState.Grabbing;
+                        EventManager.TriggerIntEvent("Green", playerId);
+                    }
+                        
                 }
                 if (midPressed) {
-                    EventManager.TriggerIntEvent("Orange", playerId);
                     selection = FoodColor.Orange;
-                    state = PlayerState.Grabbing;
+                    bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
+                    if (!alreadySelected) {
+                        state = PlayerState.Grabbing;
+                        EventManager.TriggerIntEvent("Orange", playerId);
+                    }
                 }
                 if (rightPressed) {
-                    EventManager.TriggerIntEvent("Pink", playerId);
                     selection = FoodColor.Pink;
-                    state = PlayerState.Grabbing;
+                    bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
+                    if (!alreadySelected) {
+                        state = PlayerState.Grabbing;
+                        EventManager.TriggerIntEvent("Pink", playerId);
+                    }
                 }
                 break;
                    
@@ -203,7 +214,7 @@ public class Player : MonoBehaviour {
     void StartLerp() {
         //Set start vars
         selectionLocation = GameManager.Instance.mochiLocations[Enum.GetName(typeof(FoodColor), selection)];
-        originalLocation = transform.position;
+
         Vector2 diff = selectionLocation - originalLocation;
         diff.Normalize();
         float zRot = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
