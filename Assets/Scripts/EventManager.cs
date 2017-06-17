@@ -6,11 +6,14 @@ using UnityEngine.Events;
 [System.Serializable]
 public class UnityIntEvent : UnityEvent<int> { }
 
+[System.Serializable]
+public class UnityBoolEvent : UnityEvent<bool> { }
+
 public class EventManager : MonoBehaviour {
 
     private Dictionary<string, UnityEvent> eventDictionary;
     private Dictionary<string, UnityIntEvent> intEventDictionary;
-
+    private Dictionary<string, UnityBoolEvent> boolEventDictionary;
     //Singleton Pattern
     //Private instance of manager
     private static EventManager eventManager;
@@ -70,6 +73,31 @@ public class EventManager : MonoBehaviour {
         }
     }
 
+    public static void StartListeningTypeBool(string eventName, UnityAction<bool> listener){
+        UnityBoolEvent thisEvent = null;
+        if(instance.boolEventDictionary.TryGetValue(eventName, out thisEvent)) {
+            thisEvent.AddListener(listener);
+        } else {
+            thisEvent = new UnityBoolEvent();
+            thisEvent.AddListener(listener);
+            instance.boolEventDictionary.Add(eventName, thisEvent);
+        }
+    }
+
+    public static void StopListeningTypeBool(string eventName, UnityAction<bool> listener) {
+        if (eventManager == null) { return; }
+        UnityBoolEvent thisEvent = null;
+        if(instance.boolEventDictionary.TryGetValue(eventName, out thisEvent)){
+            thisEvent.RemoveListener(listener);
+        }
+    }
+
+    public static void TriggerBoolEvent(string eventName, bool input){
+        UnityBoolEvent thisEvent = null;
+        if(instance.boolEventDictionary.TryGetValue(eventName, out thisEvent)){
+            thisEvent.Invoke(input);
+        }
+    }
     public static void StartListening(string eventName, UnityAction listener) {
         UnityEvent thisEvent = null;
         if(instance.eventDictionary.TryGetValue(eventName, out thisEvent)) {

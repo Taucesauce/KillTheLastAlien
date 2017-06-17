@@ -3,18 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+    //Gameplay Vars:
+    //Current gameplay state
+    [Header("Gameplay Variables")]
     public GameState state;
+    //Number of rounds per game
+    [SerializeField]
+    private int numRounds;
+    [HideInInspector]
+    public int NumRounds { get { return numRounds; } }
+    
+    [SerializeField]
+    private int currentRound;
+    [HideInInspector]
+    public int CurrentRound { get { return currentRound; } }
+
+    private const float timeBetweenRounds = 3f;
+    private float countdown = timeBetweenRounds;
+
     [Header("Players")]
     [SerializeField]
     private GameObject[] players = new GameObject[4];
+
     [Header("Mochis")]
     [SerializeField]
     private GameObject[] mochis = new GameObject[3];
+
     [HideInInspector]
     public GameObject[] Mochis { get { return mochis; } }
 
     public Dictionary<string, Vector2> mochiLocations;
 
+    //State Routines
     IEnumerator MenuState() {
         Debug.Log("Entering Menu State");
         EventManager.TriggerIntEvent("GameStateChange", (int)GameState.Menu);
@@ -47,11 +67,13 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator EndRoundState() {
         Debug.Log("Entering End Round State");
+        countdown = timeBetweenRounds;
         EventManager.TriggerIntEvent("GameStateChange", (int)GameState.EndRound);
         while (state == GameState.EndRound) {
             yield return 0;
         }
         Debug.Log("Exiting End Round State");
+        EventManager.TriggerEvent("RoundReset");
         NextState();
     }
 
@@ -65,6 +87,7 @@ public class GameManager : MonoBehaviour {
         NextState();
     }
 
+    //Determines next state by current state's name and invokes the next coroutine
     private void NextState() {
         string methodName = state.ToString() + "State";
         System.Reflection.MethodInfo info = GetType().GetMethod(methodName,
@@ -93,6 +116,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    //Accessible position data for Player object
     void Init() {
         if(mochiLocations == null) {
             mochiLocations = new Dictionary<string, Vector2>();
@@ -102,6 +126,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    //Event hooks
     void OnEnable() {
         EventManager.StartListening("GameStart", GameStart);
     }
@@ -110,13 +135,13 @@ public class GameManager : MonoBehaviour {
         EventManager.StopListening("GameStart", GameStart);
     }
 
-	// Use this for initialization
+	//Get GameManager up and running
 	void Start () {
         Debug.Log(Instance);
         NextState();
     }
 	
-	// Update is called once per frame
+	// Handle Update logic based on current game state.
 	void Update () {
         switch (state) {
             case GameState.Decision:
@@ -125,9 +150,13 @@ public class GameManager : MonoBehaviour {
             case GameState.Scramble:
                 ScrambleStateLogic();
                 break;
+            case GameState.EndRound:
+                EndRoundStateLogic();
+                break;
         }
 	}
 
+    //Game State Logic Functions
     void DecisionStateLogic() {
         foreach(GameObject player in players) {
             if (player.GetComponent<Player>().state == Player.PlayerState.Selecting) {
@@ -148,6 +177,18 @@ public class GameManager : MonoBehaviour {
             state = GameState.EndRound;
         else
             return;
+    }
+
+    void EndRoundStateLogic() {
+        if(currentRound <= numRounds) {
+            countdown -= Time.deltaTime;
+            if(countdown <= 0.0f) {
+                currentRound++;
+                state = GameState.Decision;
+            }
+        } else {
+            state = GameState.EndGame;
+        }
     }
 
     void GameStart() {

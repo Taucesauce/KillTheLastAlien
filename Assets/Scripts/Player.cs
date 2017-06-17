@@ -23,49 +23,48 @@ public class Player : MonoBehaviour {
     public PlayerState state;
 
     IEnumerator IdleState() {
-        Debug.Log("Entering Idle for Player " + playerId);
+        //Debug.Log("Entering Idle for Player " + playerId);
         while(state == PlayerState.Idle) {
             yield return 0;
         }
-        Debug.Log("Exiting Idle for Player " + playerId);
+        //Debug.Log("Exiting Idle for Player " + playerId);
         NextState();
     }
 
     IEnumerator SelectingState() {
-        Debug.Log("Entering Selecting for Player " + playerId);
+        //Debug.Log("Entering Selecting for Player " + playerId);
         while (state == PlayerState.Selecting) {
             yield return 0;
         }
-        Debug.Log("Exiting Selecting for Player " + playerId);
+        //Debug.Log("Exiting Selecting for Player " + playerId);
         NextState();
     }
 
     IEnumerator GrabbingState() {
-        Debug.Log("Entering Grabbing for Player " + playerId);
+        //Debug.Log("Entering Grabbing for Player " + playerId);
         StartLerp();
         while (state == PlayerState.Grabbing) {
             yield return 0;
         }
-        Debug.Log("Exiting Grabbing for Player " + playerId);
+        //Debug.Log("Exiting Grabbing for Player " + playerId);
         NextState();
     }
 
     IEnumerator ScrambleState() {
-        Debug.Log("Entering Scramble for Player " + playerId);
-        //StartLerp();
+        //Debug.Log("Entering Scramble for Player " + playerId);
         while (state == PlayerState.Scramble) {
             yield return 0;
         }
-        Debug.Log("Exiting Scramble for Player " + playerId);
+        //Debug.Log("Exiting Scramble for Player " + playerId);
         NextState();
     }
     IEnumerator LockedState() {
-        Debug.Log("Entering Locked for Player " + playerId);
+        //Debug.Log("Entering Locked for Player " + playerId);
         EventManager.TriggerIntEvent("PlayerLocked", playerId);
         while (state == PlayerState.Locked) {
             yield return 0;
         }
-        Debug.Log("Exiting Locked for Player " + playerId);
+        //Debug.Log("Exiting Locked for Player " + playerId);
         EventManager.TriggerIntEvent("PlayerUnlocked", playerId);
         NextState();
     }
@@ -78,11 +77,11 @@ public class Player : MonoBehaviour {
         StartCoroutine((IEnumerator)info.Invoke(this, null));
     }
 
-    //Gameplay Variables
+    //Input Variables
     bool leftPressed = false;
     bool midPressed = false;
     bool rightPressed = false;
-    FoodColor? selection;
+
 
     //Grabbing vars
     Vector2 originalLocation;
@@ -95,24 +94,26 @@ public class Player : MonoBehaviour {
     private float distance;
     float fracJourney;
 
+    //Food Interaction Variables
+    FoodColor? selection;
     bool reachedMochi = false;
     bool hasMochi = false;
 
     void Awake() {
         player = ReInput.players.GetPlayer(playerId); //use to assign map and access button states
-
-        cc = GetComponent<CharacterController>(); //will need to control anim state and movement of hands
         NextState();
     }
 
     void OnEnable() {
         EventManager.StartListeningTypeInt("GameStateChange", ChangeState);
         EventManager.StartListening(playerId + "GrabbedMochi", GetMochi);
+        EventManager.StartListening("RoundReset", ResetRound);
     }
 
     void OnDisable() {
         EventManager.StopListeningTypeInt("GameStateChange", ChangeState);
         EventManager.StopListening(playerId + "GrabbedMochi", GetMochi);
+        EventManager.StopListening("RoundReset", ResetPlayerVariables);
     }
 
     // Use this for initialization
@@ -249,6 +250,11 @@ public class Player : MonoBehaviour {
             fracJourney = startTime / lerpTime;
             transform.position = Vector3.Lerp(originalLocation, selectionLocation, fracJourney);
         }
+    }
+
+    void ResetRound() {
+        hasMochi = false;
+        ResetPlayerVariables();
     }
 
     void ResetPlayerVariables() {
