@@ -129,10 +129,14 @@ public class GameManager : MonoBehaviour {
     //Event hooks
     void OnEnable() {
         EventManager.StartListening("GameStart", GameStart);
+        EventManager.StartListeningTypeInt("DecisionScore", DecisionScore);
+        EventManager.StartListeningTypeInt("ScrambleScore", ScrambleScore);
     }
 
     void OnDisable() {
         EventManager.StopListening("GameStart", GameStart);
+        EventManager.StopListeningTypeInt("DecisionScore", DecisionScore);
+        EventManager.StopListeningTypeInt("ScrambleScore", ScrambleScore);
     }
 
 	//Get GameManager up and running
@@ -159,7 +163,7 @@ public class GameManager : MonoBehaviour {
     //Game State Logic Functions
     void DecisionStateLogic() {
         foreach(GameObject player in players) {
-            if (player.GetComponent<Player>().state == Player.PlayerState.Selecting) {
+            if (player.GetComponent<Player>().state != Player.PlayerState.Locked) {
                 return;
             }
         }
@@ -191,7 +195,19 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void GameStart() {
+    public void GameStart() {
         state = GameState.Decision;
+        UIManager.Instance.DisplayMenu(false);
+        UIManager.Instance.DisplayGameCanvas(true);
+    }
+
+    void DecisionScore(int playerID) {
+        players[playerID].GetComponent<Player>().IncrementScore(2);
+        Debug.Log(players[playerID].GetComponent<Player>().Score);
+    }
+
+    void ScrambleScore(int playerID) {
+        players[playerID].GetComponent<Player>().IncrementScore(1);
+        Debug.Log(players[playerID].GetComponent<Player>().Score);
     }
 }

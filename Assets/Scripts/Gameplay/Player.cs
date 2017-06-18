@@ -17,9 +17,10 @@ public class Player : MonoBehaviour {
         Locked //Has food, during countdown, finished selecting in countdown phase, etc.
     }
 
-    public int playerId; //The Rewired player id of this character 
+    public int playerId; //The Rewired player id of this character
+    private int score;
+    public int Score { get { return score; } }
     private Rewired.Player player;
-    private CharacterController cc;
     public PlayerState state;
 
     IEnumerator IdleState() {
@@ -104,6 +105,7 @@ public class Player : MonoBehaviour {
         NextState();
     }
 
+    //Event hooks
     void OnEnable() {
         EventManager.StartListeningTypeInt("GameStateChange", ChangeState);
         EventManager.StartListening(playerId + "GrabbedMochi", GetMochi);
@@ -130,6 +132,7 @@ public class Player : MonoBehaviour {
         }
 	}
 
+    //Input Update Functions
     private void GetInput() {
         leftPressed = player.GetButtonDown("GreenSelect");
         midPressed = player.GetButtonDown("OrangeSelect");
@@ -208,12 +211,10 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void GetMochi() {
-        hasMochi = true;
-    }
-
+    //Lerp functions
     void StartLerp() {
         //Set start vars
+        Debug.Log(state);
         selectionLocation = GameManager.Instance.mochiLocations[Enum.GetName(typeof(FoodColor), selection)];
 
         Vector2 diff = selectionLocation - originalLocation;
@@ -252,6 +253,11 @@ public class Player : MonoBehaviour {
         }
     }
 
+    //Manipulation of object var functions
+    void GetMochi() {
+        hasMochi = true;
+    }
+
     void ResetRound() {
         hasMochi = false;
         ResetPlayerVariables();
@@ -260,5 +266,9 @@ public class Player : MonoBehaviour {
     void ResetPlayerVariables() {
         reachedMochi = false;
         selection = null;
+    }
+
+    public void IncrementScore(int amount) {
+        score += amount;
     }
 }

@@ -47,6 +47,11 @@ public class Food : MonoBehaviour {
             Debug.Log("Player ID: " + id);
             playerID = id;
             isSelected = true;
+            if (GameManager.Instance.state == GameState.Decision) {
+                EventManager.TriggerIntEvent("DecisionScore", id);
+            } else if (GameManager.Instance.state == GameState.Scramble) {
+                EventManager.TriggerIntEvent("ScrambleScore", id);
+            }
         }
     }
 
