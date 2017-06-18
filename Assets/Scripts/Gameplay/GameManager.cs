@@ -203,11 +203,13 @@ public class GameManager : MonoBehaviour {
 
     void DecisionScore(int playerID) {
         players[playerID].GetComponent<Player>().IncrementScore(2);
+        EventManager.TriggerIntEvent("PlayerSuccess", playerID);
         Debug.Log(players[playerID].GetComponent<Player>().Score);
     }
 
     void ScrambleScore(int playerID) {
         players[playerID].GetComponent<Player>().IncrementScore(1);
+        EventManager.TriggerIntEvent("PlayerSuccess", playerID);
         Debug.Log(players[playerID].GetComponent<Player>().Score);
     }
 }

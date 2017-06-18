@@ -14,14 +14,15 @@ public class Food : MonoBehaviour {
     //Gameplay Vars
     private Vector2 originalPos;
     public FoodColor color;
+    private string colorName;
     public bool isSelected = false;
     bool isAttached = false;
-
     private int? playerID = null;
 
     void Start() {
         originalPos = GetComponent<Transform>().position;
         GetComponent<Animator>().Play(Enum.GetName(typeof(FoodColor), color) + "Idle", -1, animationOffset);
+        colorName = Enum.GetName(typeof(FoodColor), color);
     }
 
     void Update() {
@@ -60,6 +61,7 @@ public class Food : MonoBehaviour {
             isAttached = true;
             int adjustedID = (int)playerID + 1;
             transform.parent = GameObject.Find("Player" + adjustedID).transform;
+            GetComponent<Animator>().Play(colorName + "Wow");
             EventManager.TriggerEvent(playerID + "GrabbedMochi");
             EventManager.TriggerIntEvent("MochiGrabbed", (int)color);
         }
@@ -71,5 +73,6 @@ public class Food : MonoBehaviour {
         transform.parent = null;
         transform.position = originalPos;
         playerID = null;
+        GetComponent<Animator>().Play(Enum.GetName(typeof(FoodColor), color) + "Idle", -1, animationOffset);
     }
 }

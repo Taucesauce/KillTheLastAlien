@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour {
         howToSprite.GetComponent<Animator>().enabled = false;
         exitSprite.GetComponent<Animator>().enabled = false;
     }
+
 	void Init()
 	{
         

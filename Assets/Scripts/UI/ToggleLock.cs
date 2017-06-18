@@ -10,7 +10,7 @@ public class ToggleLock : MonoBehaviour {
     int player;
 
     [SerializeField]
-    Sprite[] sprites = new Sprite[2];
+    Sprite[] sprites = new Sprite[4];
 
     void Start() {
         currentImage = GetComponent<Image>();
@@ -18,11 +18,15 @@ public class ToggleLock : MonoBehaviour {
     void OnEnable() {
         EventManager.StartListeningTypeInt("PlayerLocked", UILock);
         EventManager.StartListeningTypeInt("PlayerUnlocked", UIUnlock);
+        EventManager.StartListeningTypeInt("PlayerSuccess", UISuccess);
+        EventManager.StartListeningTypeInt("PlayerFail", UIFail);
     }
 
     void OnDisable() {
         EventManager.StopListeningTypeInt("PlayerLocked", UILock);
         EventManager.StopListeningTypeInt("PlayerUnlocked", UIUnlock);
+        EventManager.StopListeningTypeInt("PlayerSuccess", UISuccess);
+        EventManager.StopListeningTypeInt("PlayerFail", UIFail);
     }
 
     void UILock(int player) {
@@ -34,5 +38,14 @@ public class ToggleLock : MonoBehaviour {
         if (this.player == player)
             currentImage.sprite = sprites[0];
     }
-    
+
+    void UISuccess(int player) {
+        if (this.player == player)
+            currentImage.sprite = sprites[2];
+    }
+
+    void UIFail(int player) {
+        if (this.player == player)
+            currentImage.sprite = sprites[3];
+    }
 }
