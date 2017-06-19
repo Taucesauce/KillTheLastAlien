@@ -11,6 +11,9 @@ public class Food : MonoBehaviour {
     [Range(0.0f, 1.0f)]
     private float animationOffset;
 
+    [SerializeField]
+    private GameObject GameCanvas;
+
     //Gameplay Vars
     private Vector2 originalPos;
     public FoodColor color;
@@ -34,6 +37,7 @@ public class Food : MonoBehaviour {
         EventManager.StartListeningTypeInt(Enum.GetName(typeof(FoodColor),color), AssignPlayer);
         EventManager.StartListeningTypeInt("GrabMochi", AttachToPlayer);
         EventManager.StartListening("RoundReset", RoundReset);
+        EventManager.StartListening("EndGameUI", EndGame);
     }
 
     void OnDisable() {
@@ -44,8 +48,6 @@ public class Food : MonoBehaviour {
 
     void AssignPlayer(int id) {
         if (!isSelected) {
-            Debug.Log("Food Location: " + color);
-            Debug.Log("Player ID: " + id);
             playerID = id;
             isSelected = true;
             if (GameManager.Instance.state == GameState.Decision) {
@@ -74,5 +76,9 @@ public class Food : MonoBehaviour {
         transform.position = originalPos;
         playerID = null;
         GetComponent<Animator>().Play(Enum.GetName(typeof(FoodColor), color) + "Idle", -1, animationOffset);
+    }
+
+    void EndGame() {
+        transform.parent = GameCanvas.transform;
     }
 }

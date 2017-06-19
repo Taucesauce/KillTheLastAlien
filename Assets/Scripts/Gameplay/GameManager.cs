@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public int CurrentRound { get { return currentRound; } }
 
-    private const float timeBetweenRounds = 3f;
+    private const float timeBetweenRounds = 6f;
     private float countdown = timeBetweenRounds;
 
     [Header("Players")]
@@ -36,54 +36,58 @@ public class GameManager : MonoBehaviour {
 
     //State Routines
     IEnumerator MenuState() {
-        Debug.Log("Entering Menu State");
+        //Debug.Log("Entering Menu State");
+        EventManager.TriggerEvent("MenuScreen");
         EventManager.TriggerIntEvent("GameStateChange", (int)GameState.Menu);
         while (state == GameState.Menu) {
             yield return 0;
         }
-        Debug.Log("Exiting Menu State");
+        //Debug.Log("Exiting Menu State");
         NextState();
     }
 
     IEnumerator DecisionState() {
-        Debug.Log("Entering Decision State");
+        //Debug.Log("Entering Decision State");
         EventManager.TriggerIntEvent("GameStateChange", (int)GameState.Decision);
         while (state == GameState.Decision) {
             yield return 0;
         }
-        Debug.Log("Exiting Decicion State");
+        //Debug.Log("Exiting Decision State");
         NextState();
     }
 
     IEnumerator ScrambleState() {
-        Debug.Log("Entering Scramble State");
+        //Debug.Log("Entering Scramble State");
         EventManager.TriggerIntEvent("GameStateChange", (int)GameState.Scramble);
         while (state == GameState.Scramble) {
             yield return 0;
         }
-        Debug.Log("Exiting Scramble State");
+        //Debug.Log("Exiting Scramble State");
         NextState();
     }
 
     IEnumerator EndRoundState() {
-        Debug.Log("Entering End Round State");
+        //Debug.Log("Entering End Round State");
         countdown = timeBetweenRounds;
+        EventManager.TriggerEvent("EndRoundUI");
         EventManager.TriggerIntEvent("GameStateChange", (int)GameState.EndRound);
         while (state == GameState.EndRound) {
             yield return 0;
         }
-        Debug.Log("Exiting End Round State");
+        //Debug.Log("Exiting End Round State");
         EventManager.TriggerEvent("RoundReset");
         NextState();
     }
 
     IEnumerator EndGameState() {
-        Debug.Log("Entering End Game State");
+        //Debug.Log("Entering End Game State");
+        EventManager.TriggerEvent("EndGameUI");
         EventManager.TriggerIntEvent("GameStateChange", (int)GameState.EndGame);
+        EndGameStateLogic();
         while (state == GameState.EndGame) {
             yield return 0;
         }
-        Debug.Log("Exiting End Game State");
+        //Debug.Log("Exiting End Game State");
         NextState();
     }
 
@@ -184,10 +188,12 @@ public class GameManager : MonoBehaviour {
     }
 
     void EndRoundStateLogic() {
-        if(currentRound <= numRounds) {
+        if(currentRound < numRounds) {
             countdown -= Time.deltaTime;
+            UIManager.Instance.UpdateEndRoundCounter((int)countdown);
             if(countdown <= 0.0f) {
                 currentRound++;
+                UIManager.Instance.UpdateCurrentRound(currentRound);
                 state = GameState.Decision;
             }
         } else {
@@ -195,21 +201,56 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void GameStart() {
+    //This feels like it could be optimized by sorting/selecting differently but I'm out of time!
+    void EndGameStateLogic() {
+        int highestScore = 0;
+        Dictionary<int, int> playerScores = new Dictionary<int, int>();
+        List<int> highestScoringPlayers = new List<int>();
+        foreach(GameObject playerObj in players) {
+            Player player = playerObj.GetComponent<Player>();
+            playerScores.Add(player.playerId, player.Score);
+
+            if(player.Score > highestScore) {
+                highestScore = player.Score;
+            }
+        }
+
+        foreach(KeyValuePair<int,int> playerScore in playerScores) {
+            if(playerScore.Value == highestScore) {
+                highestScoringPlayers.Add(playerScore.Key);
+            }
+        }
+
+        UIManager.Instance.SetWinnerText(highestScoringPlayers);
+    }
+
+    void GameStart() {
+        currentRound = 1;
+    }
+
+    public void StartButton() {
+        EventManager.TriggerEvent("GameStart");
         state = GameState.Decision;
-        UIManager.Instance.DisplayMenu(false);
-        UIManager.Instance.DisplayGameCanvas(true);
+    }
+
+    public void ReturnToMenu() {
+        state = GameState.Menu;
+    }
+    public void GameExit() {
+        Application.Quit();
+    }
+
+    public int GetPlayerScore(int playerID) {
+        return players[playerID].GetComponent<Player>().Score;
     }
 
     void DecisionScore(int playerID) {
         players[playerID].GetComponent<Player>().IncrementScore(2);
         EventManager.TriggerIntEvent("PlayerSuccess", playerID);
-        Debug.Log(players[playerID].GetComponent<Player>().Score);
     }
 
     void ScrambleScore(int playerID) {
         players[playerID].GetComponent<Player>().IncrementScore(1);
         EventManager.TriggerIntEvent("PlayerSuccess", playerID);
-        Debug.Log(players[playerID].GetComponent<Player>().Score);
     }
 }

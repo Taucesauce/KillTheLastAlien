@@ -82,7 +82,7 @@ public class Player : MonoBehaviour {
     bool leftPressed = false;
     bool midPressed = false;
     bool rightPressed = false;
-
+    bool escPressed = false;
 
     //Grabbing vars
     Vector2 originalLocation;
@@ -92,7 +92,6 @@ public class Player : MonoBehaviour {
     float lerpTime = 1f; //time it takes arm to travel to mochi 
 
     private float startTime;
-    private float distance;
     float fracJourney;
 
     //Food Interaction Variables
@@ -110,12 +109,14 @@ public class Player : MonoBehaviour {
         EventManager.StartListeningTypeInt("GameStateChange", ChangeState);
         EventManager.StartListening(playerId + "GrabbedMochi", GetMochi);
         EventManager.StartListening("RoundReset", ResetRound);
+        EventManager.StartListening("GameStart", ResetGame);
     }
 
     void OnDisable() {
         EventManager.StopListeningTypeInt("GameStateChange", ChangeState);
         EventManager.StopListening(playerId + "GrabbedMochi", GetMochi);
         EventManager.StopListening("RoundReset", ResetPlayerVariables);
+        EventManager.StopListening("GameStart", ResetGame);
     }
 
     // Use this for initialization
@@ -137,9 +138,13 @@ public class Player : MonoBehaviour {
         leftPressed = player.GetButtonDown("GreenSelect");
         midPressed = player.GetButtonDown("OrangeSelect");
         rightPressed = player.GetButtonDown("PinkSelect");
+        escPressed = player.GetButtonDown("ExitGame");
     }
 
     private void ProcessInput() {
+        if (escPressed) {
+            Application.Quit();
+        }
         switch (state) {
             case PlayerState.Selecting:
                 if (leftPressed) {
@@ -203,6 +208,7 @@ public class Player : MonoBehaviour {
                 state = PlayerState.Grabbing;
                 break;
             case GameState.EndRound:
+                if (!hasMochi) { EventManager.TriggerIntEvent("UIFail", playerId); }
                 state = PlayerState.Idle;
                 break;
             case GameState.EndGame:
@@ -214,7 +220,6 @@ public class Player : MonoBehaviour {
     //Lerp functions
     void StartLerp() {
         //Set start vars
-        Debug.Log(state);
         selectionLocation = GameManager.Instance.mochiLocations[Enum.GetName(typeof(FoodColor), selection)];
 
         Vector2 diff = selectionLocation - originalLocation;
@@ -223,18 +228,17 @@ public class Player : MonoBehaviour {
         transform.rotation = Quaternion.Euler(0, 0, zRot);
 
         startTime = 0;
-        distance = Vector2.Distance(originalLocation, selectionLocation);
     }
 
     void UpdateLerp() {
         if((Vector2)transform.position == selectionLocation && reachedMochi == false) {
             startTime = 0;
-            distance = Vector2.Distance(selectionLocation, originalLocation);
             reachedMochi = true;
             EventManager.TriggerIntEvent("GrabMochi", playerId);
         } else if((Vector2)transform.position == originalLocation && reachedMochi == true) {
             if (hasMochi) {
                 state = PlayerState.Idle;
+                EventManager.TriggerIntEvent("UISuccess", playerId);
                 return;
             } else {
                 ResetPlayerVariables();
@@ -256,6 +260,11 @@ public class Player : MonoBehaviour {
     //Manipulation of object var functions
     void GetMochi() {
         hasMochi = true;
+    }
+
+    public void ResetGame() {
+        score = 0;
+        //ResetRound();
     }
 
     void ResetRound() {
