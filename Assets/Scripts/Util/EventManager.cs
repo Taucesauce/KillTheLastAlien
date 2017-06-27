@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+//Accessible UnityEvent classes to use in Dictionaries.
 [System.Serializable]
 public class UnityIntEvent : UnityEvent<int> { }
 
@@ -45,6 +46,7 @@ public class EventManager : MonoBehaviour {
         }
     }
 
+    //Int based event setup
     public static void StartListeningTypeInt(string eventName, UnityAction<int> listener) {
         UnityIntEvent thisEvent = null;
         if (instance.intEventDictionary.TryGetValue(eventName, out thisEvent)) {
@@ -72,7 +74,9 @@ public class EventManager : MonoBehaviour {
             thisEvent.Invoke(input);
         }
     }
+    //--End Int Event methods--
 
+    //Bool based event setup (Ended up not using these for the time being)
     public static void StartListeningTypeBool(string eventName, UnityAction<bool> listener){
         UnityBoolEvent thisEvent = null;
         if(instance.boolEventDictionary.TryGetValue(eventName, out thisEvent)) {
@@ -98,6 +102,9 @@ public class EventManager : MonoBehaviour {
             thisEvent.Invoke(input);
         }
     }
+    //--End Bool Event methods--
+
+    //Empty parameter event setup
     public static void StartListening(string eventName, UnityAction listener) {
         UnityEvent thisEvent = null;
         if(instance.eventDictionary.TryGetValue(eventName, out thisEvent)) {
@@ -124,4 +131,5 @@ public class EventManager : MonoBehaviour {
             thisEvent.Invoke();
         }
     }
+    //--End empty parameter event methods--
 }

@@ -115,7 +115,7 @@ public class Player : MonoBehaviour {
     void OnDisable() {
         EventManager.StopListeningTypeInt("GameStateChange", ChangeState);
         EventManager.StopListening(playerId + "GrabbedMochi", GetMochi);
-        EventManager.StopListening("RoundReset", ResetPlayerVariables);
+        EventManager.StopListening("RoundReset", ResetRound);
         EventManager.StopListening("GameStart", ResetGame);
     }
 
