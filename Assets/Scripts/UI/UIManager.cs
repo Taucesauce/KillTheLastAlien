@@ -247,16 +247,16 @@ public class UIManager : MonoBehaviour {
     private void UpdateScore(int playerID) {
         switch (playerID) {
             case 0:
-                P1Score.text = GameManager.Instance.GetPlayerScore(playerID).ToString();
+                P1Score.text = PlayerManager.Instance.GetPlayerScore(playerID).ToString();
                 break;
             case 1:
-                P2Score.text = GameManager.Instance.GetPlayerScore(playerID).ToString();
+                P2Score.text = PlayerManager.Instance.GetPlayerScore(playerID).ToString();
                 break;
             case 2:
-                P3Score.text = GameManager.Instance.GetPlayerScore(playerID).ToString();
+                P3Score.text = PlayerManager.Instance.GetPlayerScore(playerID).ToString();
                 break;
             case 3:
-                P4Score.text = GameManager.Instance.GetPlayerScore(playerID).ToString();
+                P4Score.text = PlayerManager.Instance.GetPlayerScore(playerID).ToString();
                 break;
         }
     }

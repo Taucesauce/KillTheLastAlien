@@ -10,6 +10,7 @@ using System;
 public class Player : MonoBehaviour {
 
     public enum PlayerState {
+        Inactive, //Not being used in this game/No player checked in during select.
         Idle, // In-between states during "scramble"
         Selecting, //Expecting Lock-In results
         Scramble, //Free for all input accepting, instant grab.

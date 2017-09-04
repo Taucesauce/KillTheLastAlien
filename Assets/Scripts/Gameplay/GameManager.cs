@@ -21,10 +21,6 @@ public class GameManager : MonoBehaviour {
     private const float timeBetweenRounds = 6f;
     private float countdown = timeBetweenRounds;
 
-    [Header("Players")]
-    [SerializeField]
-    private GameObject[] players = new GameObject[4];
-
     [Header("Mochis")]
     [SerializeField]
     private GameObject[] mochis = new GameObject[3];
@@ -43,6 +39,16 @@ public class GameManager : MonoBehaviour {
             yield return 0;
         }
         //Debug.Log("Exiting Menu State");
+        NextState();
+    }
+
+    IEnumerator PlayerSelectState() {
+        //Debug.Log("Entering Player Select State");
+        EventManager.TriggerIntEvent("GameStateChange", (int)GameState.PlayerSelect);
+        while(state == GameState.PlayerSelect) {
+            yield return 0;
+        }
+        //Debug.Log("Exiting Player Select State");
         NextState();
     }
 
@@ -133,19 +139,14 @@ public class GameManager : MonoBehaviour {
     //Event hooks
     void OnEnable() {
         EventManager.StartListening("GameStart", GameStart);
-        EventManager.StartListeningTypeInt("DecisionScore", DecisionScore);
-        EventManager.StartListeningTypeInt("ScrambleScore", ScrambleScore);
     }
 
     void OnDisable() {
         EventManager.StopListening("GameStart", GameStart);
-        EventManager.StopListeningTypeInt("DecisionScore", DecisionScore);
-        EventManager.StopListeningTypeInt("ScrambleScore", ScrambleScore);
     }
 
 	//Get GameManager up and running
 	void Start () {
-        Debug.Log(Instance);
         NextState();
     }
 	
@@ -166,8 +167,8 @@ public class GameManager : MonoBehaviour {
 
     //Game State Logic Functions
     void DecisionStateLogic() {
-        foreach(GameObject player in players) {
-            if (player.GetComponent<Player>().state != Player.PlayerState.Locked) {
+        foreach(Player player in PlayerManager.Instance.CurrentPlayers) {
+            if (player.state != Player.PlayerState.Locked) {
                 return;
             }
         }
@@ -176,8 +177,8 @@ public class GameManager : MonoBehaviour {
 
     void ScrambleStateLogic() {
         int playersIdle = 0;
-        foreach(GameObject player in players) {
-            if (player.GetComponent<Player>().state == Player.PlayerState.Idle) {
+        foreach(Player player in PlayerManager.Instance.CurrentPlayers) {
+            if (player.state == Player.PlayerState.Idle) {
                 playersIdle++;
             }
         }
@@ -206,8 +207,7 @@ public class GameManager : MonoBehaviour {
         int highestScore = 0;
         Dictionary<int, int> playerScores = new Dictionary<int, int>();
         List<int> highestScoringPlayers = new List<int>();
-        foreach(GameObject playerObj in players) {
-            Player player = playerObj.GetComponent<Player>();
+        foreach(Player player in PlayerManager.Instance.CurrentPlayers) {
             playerScores.Add(player.playerId, player.Score);
 
             if(player.Score > highestScore) {
@@ -238,19 +238,5 @@ public class GameManager : MonoBehaviour {
     }
     public void GameExit() {
         Application.Quit();
-    }
-
-    public int GetPlayerScore(int playerID) {
-        return players[playerID].GetComponent<Player>().Score;
-    }
-
-    void DecisionScore(int playerID) {
-        players[playerID].GetComponent<Player>().IncrementScore(2);
-        EventManager.TriggerIntEvent("PlayerSuccess", playerID);
-    }
-
-    void ScrambleScore(int playerID) {
-        players[playerID].GetComponent<Player>().IncrementScore(1);
-        EventManager.TriggerIntEvent("PlayerSuccess", playerID);
     }
 }
