@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 
     public enum PlayerState {
         Inactive, //Not being used in this game/No player checked in during select.
+        SelectScreen, //Join/Leave game state in Player Select,
         Idle, // In-between states during "scramble"
         Selecting, //Expecting Lock-In results
         Scramble, //Free for all input accepting, instant grab.
@@ -24,6 +25,14 @@ public class Player : MonoBehaviour {
     private Rewired.Player player;
     public PlayerState state;
 
+    IEnumerator InactiveState() {
+        //Debug.Log("Entering Inactive for Player " + playerId);
+        while(state == PlayerState.Inactive) {
+            yield return 0;
+        }
+        //Debug.Log("Exiting Inactive for Player " + playerId);
+        NextState();
+    }
     IEnumerator IdleState() {
         //Debug.Log("Entering Idle for Player " + playerId);
         while(state == PlayerState.Idle) {
@@ -84,6 +93,8 @@ public class Player : MonoBehaviour {
     bool midPressed = false;
     bool rightPressed = false;
     bool escPressed = false;
+    bool joinPressed = false;
+    bool leavePressed = false;
 
     //Grabbing vars
     Vector2 originalLocation;
@@ -139,6 +150,8 @@ public class Player : MonoBehaviour {
         leftPressed = player.GetButtonDown("GreenSelect");
         midPressed = player.GetButtonDown("OrangeSelect");
         rightPressed = player.GetButtonDown("PinkSelect");
+        joinPressed = player.GetButtonDown("JoinGame");
+        leavePressed = player.GetButtonDown("LeaveGame");
         escPressed = player.GetButtonDown("ExitGame");
     }
 
@@ -147,6 +160,14 @@ public class Player : MonoBehaviour {
             Application.Quit();
         }
         switch (state) {
+            case PlayerState.SelectScreen:
+                if (joinPressed) {
+                    EventManager.TriggerIntEvent("Join", playerId);
+                }
+                if (leavePressed) {
+                    EventManager.TriggerIntEvent("Leave", playerId);
+                }   
+                break;
             case PlayerState.Selecting:
                 if (leftPressed) {
                     EventManager.TriggerIntEvent("Green", playerId);
@@ -265,7 +286,6 @@ public class Player : MonoBehaviour {
 
     public void ResetGame() {
         score = 0;
-        //ResetRound();
     }
 
     void ResetRound() {

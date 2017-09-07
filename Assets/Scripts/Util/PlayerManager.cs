@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
-    //Singleton pattern
+    //Singleton pattern 
     //Private manager instance
     private static PlayerManager playerManager;
+    [SerializeField]
     private List<Player> currentPlayers = new List<Player>();
     public List<Player>CurrentPlayers { get { return currentPlayers; } }
 
@@ -31,37 +32,46 @@ public class PlayerManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        AddPlayer(0);
-        AddPlayer(1);
-        AddPlayer(2);
-        AddPlayer(3);
+        
 	}
 
     void OnEnable() {
-        EventManager.StartListeningTypeInt("AddPlayer", AddPlayer);
+        EventManager.StartListeningTypeInt("Join", ActivatePlayer);
+        EventManager.StartListeningTypeInt("Leave", DeactivatePlayer);
+        EventManager.StartListening("GameStart", RemovePlayers);
     }
 
     void OnDisable() {
-        EventManager.StopListeningTypeInt("AddPlayer", RemovePlayer);
+        EventManager.StopListeningTypeInt("Join", ActivatePlayer);
+        EventManager.StopListeningTypeInt("Leave", DeactivatePlayer);
+        EventManager.StopListening("GameStart", RemovePlayers);
     }
+
     // Update is called once per frame
     void Update () {
 		
 	}
 
-    void AddPlayer(int playerID) {
-        currentPlayers.Add(new Player { playerId = playerID });
+    void ActivatePlayer(int playerID) {
+        currentPlayers[playerID].state = Player.PlayerState.Idle;
     }
 
-    void RemovePlayer(int playerID) {
-        currentPlayers.RemoveAll(p => p.playerId == playerID);
+    void DeactivatePlayer(int playerID) {
+        currentPlayers[playerID].state = Player.PlayerState.SelectScreen;
     }
 
+    void RemovePlayers() {
+        foreach(Player player in currentPlayers) {
+            if(player.state == Player.PlayerState.SelectScreen) {
+                player.state = Player.PlayerState.Inactive;
+            }
+        }
+    }
     public int GetPlayerScore(int playerID) {
-        return currentPlayers.Find(p => p.playerId == playerID).Score;
+        return currentPlayers[playerID].Score;
     }
 
     void IncrementScore(int playerID) {
-        currentPlayers.Find(p => p.playerId == playerID).IncrementScore(1);
+        currentPlayers[playerID].IncrementScore(1);
     }
 }

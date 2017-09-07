@@ -153,6 +153,9 @@ public class GameManager : MonoBehaviour {
 	// Handle Update logic based on current game state.
 	void Update () {
         switch (state) {
+            case GameState.PlayerSelect:
+                PlayerSelectLogic();
+                break;
             case GameState.Decision:
                 DecisionStateLogic();
                 break;
@@ -166,6 +169,10 @@ public class GameManager : MonoBehaviour {
 	}
 
     //Game State Logic Functions
+    void PlayerSelectLogic() {
+
+    }
+
     void DecisionStateLogic() {
         foreach(Player player in PlayerManager.Instance.CurrentPlayers) {
             if (player.state != Player.PlayerState.Locked) {
@@ -230,7 +237,7 @@ public class GameManager : MonoBehaviour {
 
     public void StartButton() {
         EventManager.TriggerEvent("GameStart");
-        state = GameState.Decision;
+        state = GameState.PlayerSelect;
     }
 
     public void ReturnToMenu() {

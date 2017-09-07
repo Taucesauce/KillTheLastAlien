@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour {
     private Canvas MainMenuCanvas;
     [SerializeField]
     private Canvas HowToCanvas;
+    [SerializeField]
+    private Canvas PlayerSelectCanvas;
 
     [Header("Menu Sprites")]
     [SerializeField]
@@ -151,7 +153,8 @@ public class UIManager : MonoBehaviour {
     public void GameStart() {
         slideOut = false;
         DisplayMenu(false);
-        DisplayGameCanvas(true);
+        DisplayGameCanvas(false);
+        DisplayPlayerSelectCanvas(true);
         
         P1Score.text = "0";
         P2Score.text = "0";
@@ -232,6 +235,10 @@ public class UIManager : MonoBehaviour {
     //--Canvas Display methods--
     public void DisplayMenu(bool isDisplayed) {
         MainMenuCanvas.gameObject.SetActive(isDisplayed);
+    }
+
+    public void DisplayPlayerSelectCanvas(bool isDisplayed) {
+        PlayerSelectCanvas.gameObject.SetActive(isDisplayed);
     }
 
     public void DisplayHowTo(bool isDisplayed) {
