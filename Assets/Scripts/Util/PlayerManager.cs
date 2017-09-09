@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour {
     private List<Player> currentPlayers = new List<Player>();
     public List<Player>CurrentPlayers { get { return currentPlayers; } }
 
+    
     public static PlayerManager Instance {
         get {
             if (!playerManager) {
@@ -38,12 +39,14 @@ public class PlayerManager : MonoBehaviour {
     void OnEnable() {
         EventManager.StartListeningTypeInt("Join", ActivatePlayer);
         EventManager.StartListeningTypeInt("Leave", DeactivatePlayer);
+        EventManager.StartListening("PlayerSelect", PlayerSelect);
         EventManager.StartListening("GameStart", RemovePlayers);
     }
 
     void OnDisable() {
         EventManager.StopListeningTypeInt("Join", ActivatePlayer);
         EventManager.StopListeningTypeInt("Leave", DeactivatePlayer);
+        EventManager.StopListening("PlayerSelect", PlayerSelect);
         EventManager.StopListening("GameStart", RemovePlayers);
     }
 
@@ -52,18 +55,25 @@ public class PlayerManager : MonoBehaviour {
 		
 	}
 
+    void PlayerSelect() {
+        foreach(Player player in CurrentPlayers) {
+            player.state = Player.PlayerState.SelectScreen;
+        }
+    }
     void ActivatePlayer(int playerID) {
-        currentPlayers[playerID].state = Player.PlayerState.Idle;
+        currentPlayers[playerID].isPlaying = true;
     }
 
     void DeactivatePlayer(int playerID) {
-        currentPlayers[playerID].state = Player.PlayerState.SelectScreen;
+        currentPlayers[playerID].isPlaying = false;
     }
 
     void RemovePlayers() {
         foreach(Player player in currentPlayers) {
-            if(player.state == Player.PlayerState.SelectScreen) {
+            if(!player.isPlaying) {
                 player.state = Player.PlayerState.Inactive;
+            } else {
+                player.state = Player.PlayerState.Idle;
             }
         }
     }
@@ -71,6 +81,9 @@ public class PlayerManager : MonoBehaviour {
         return currentPlayers[playerID].Score;
     }
 
+    public int GetActivePlayerCount() {
+        return currentPlayers.FindAll(p => p.isPlaying).Count;
+    }
     void IncrementScore(int playerID) {
         currentPlayers[playerID].IncrementScore(1);
     }

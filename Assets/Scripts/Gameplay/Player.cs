@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 using Rewired;
 using System;
 
@@ -13,41 +10,40 @@ public class Player : MonoBehaviour {
         Inactive, //Not being used in this game/No player checked in during select.
         SelectScreen, //Join/Leave game state in Player Select,
         Idle, // In-between states during "scramble"
-        Selecting, //Expecting Lock-In results
-        Scramble, //Free for all input accepting, instant grab.
         Grabbing, //Animation State, locked input.
-        Locked //Has food, during countdown, finished selecting in countdown phase, etc.
     }
 
     public int playerId; //The Rewired player id of this character
     private int score;
     public int Score { get { return score; } }
+    public bool isPlaying = false;
     private Rewired.Player player;
     public PlayerState state;
 
     IEnumerator InactiveState() {
-        //Debug.Log("Entering Inactive for Player " + playerId);
+        Debug.Log("Entering Inactive for Player " + playerId);
         while(state == PlayerState.Inactive) {
             yield return 0;
         }
-        //Debug.Log("Exiting Inactive for Player " + playerId);
-        NextState();
-    }
-    IEnumerator IdleState() {
-        //Debug.Log("Entering Idle for Player " + playerId);
-        while(state == PlayerState.Idle) {
-            yield return 0;
-        }
-        //Debug.Log("Exiting Idle for Player " + playerId);
+        Debug.Log("Exiting Inactive for Player " + playerId);
         NextState();
     }
 
-    IEnumerator SelectingState() {
-        //Debug.Log("Entering Selecting for Player " + playerId);
-        while (state == PlayerState.Selecting) {
+    IEnumerator SelectScreenState() {
+        Debug.Log("Entering Select Screen State for Player " + playerId);
+        while(state == PlayerState.SelectScreen) {
             yield return 0;
         }
-        //Debug.Log("Exiting Selecting for Player " + playerId);
+        Debug.Log("Exiting Select Screen State for Player " + playerId);
+        NextState();
+    }
+
+    IEnumerator IdleState() {
+        Debug.Log("Entering Idle for Player " + playerId);
+        while(state == PlayerState.Idle) {
+            yield return 0;
+        }
+        Debug.Log("Exiting Idle for Player " + playerId);
         NextState();
     }
 
@@ -58,25 +54,6 @@ public class Player : MonoBehaviour {
             yield return 0;
         }
         //Debug.Log("Exiting Grabbing for Player " + playerId);
-        NextState();
-    }
-
-    IEnumerator ScrambleState() {
-        //Debug.Log("Entering Scramble for Player " + playerId);
-        while (state == PlayerState.Scramble) {
-            yield return 0;
-        }
-        //Debug.Log("Exiting Scramble for Player " + playerId);
-        NextState();
-    }
-    IEnumerator LockedState() {
-        //Debug.Log("Entering Locked for Player " + playerId);
-        EventManager.TriggerIntEvent("PlayerLocked", playerId);
-        while (state == PlayerState.Locked) {
-            yield return 0;
-        }
-        //Debug.Log("Exiting Locked for Player " + playerId);
-        EventManager.TriggerIntEvent("PlayerUnlocked", playerId);
         NextState();
     }
 
@@ -94,7 +71,6 @@ public class Player : MonoBehaviour {
     bool rightPressed = false;
     bool escPressed = false;
     bool joinPressed = false;
-    bool leavePressed = false;
 
     //Grabbing vars
     Vector2 originalLocation;
@@ -120,15 +96,11 @@ public class Player : MonoBehaviour {
     void OnEnable() {
         EventManager.StartListeningTypeInt("GameStateChange", ChangeState);
         EventManager.StartListening(playerId + "GrabbedMochi", GetMochi);
-        EventManager.StartListening("RoundReset", ResetRound);
-        EventManager.StartListening("GameStart", ResetGame);
     }
 
     void OnDisable() {
         EventManager.StopListeningTypeInt("GameStateChange", ChangeState);
         EventManager.StopListening(playerId + "GrabbedMochi", GetMochi);
-        EventManager.StopListening("RoundReset", ResetRound);
-        EventManager.StopListening("GameStart", ResetGame);
     }
 
     // Use this for initialization
@@ -151,7 +123,6 @@ public class Player : MonoBehaviour {
         midPressed = player.GetButtonDown("OrangeSelect");
         rightPressed = player.GetButtonDown("PinkSelect");
         joinPressed = player.GetButtonDown("JoinGame");
-        leavePressed = player.GetButtonDown("LeaveGame");
         escPressed = player.GetButtonDown("ExitGame");
     }
 
@@ -161,59 +132,58 @@ public class Player : MonoBehaviour {
         }
         switch (state) {
             case PlayerState.SelectScreen:
-                if (joinPressed) {
+                if (joinPressed && isPlaying) {
+                    EventManager.TriggerIntEvent("Leave", playerId);
+                }
+                else if(joinPressed && !isPlaying){ 
                     EventManager.TriggerIntEvent("Join", playerId);
                 }
-                if (leavePressed) {
-                    EventManager.TriggerIntEvent("Leave", playerId);
-                }   
                 break;
-            case PlayerState.Selecting:
-                if (leftPressed) {
-                    EventManager.TriggerIntEvent("Green", playerId);
-                    selection = FoodColor.Green;
-                    state = PlayerState.Locked;
-                }
-                if (midPressed) {
-                    EventManager.TriggerIntEvent("Orange", playerId);
-                    selection = FoodColor.Orange;
-                    state = PlayerState.Locked;
-                }
-                if (rightPressed) {
-                    EventManager.TriggerIntEvent("Pink", playerId);
-                    selection = FoodColor.Pink;
-                    state = PlayerState.Locked;
-                }
-                break;
-            //Not a fan of the alreadySelected but should work for the time being.
-            case PlayerState.Scramble:
-                if (leftPressed) {
-                    selection = FoodColor.Green;
-                    bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
-                    if (!alreadySelected) {
-                        state = PlayerState.Grabbing;
-                        EventManager.TriggerIntEvent("Green", playerId);
-                    }
+            //case PlayerState.Selecting:
+            //    if (leftPressed) {
+            //        EventManager.TriggerIntEvent("Green", playerId);
+            //        selection = FoodColor.Green;
+            //        state = PlayerState.Locked;
+            //    }
+            //    if (midPressed) {
+            //        EventManager.TriggerIntEvent("Orange", playerId);
+            //        selection = FoodColor.Orange;
+            //        state = PlayerState.Locked;
+            //    }
+            //    if (rightPressed) {
+            //        EventManager.TriggerIntEvent("Pink", playerId);
+            //        selection = FoodColor.Pink;
+            //        state = PlayerState.Locked;
+            //    }
+            //    break;
+            ////Not a fan of the alreadySelected but should work for the time being.
+            //case PlayerState.Scramble:
+            //    if (leftPressed) {
+            //        selection = FoodColor.Green;
+            //        bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
+            //        if (!alreadySelected) {
+            //            state = PlayerState.Grabbing;
+            //            EventManager.TriggerIntEvent("Green", playerId);
+            //        }
                         
-                }
-                if (midPressed) {
-                    selection = FoodColor.Orange;
-                    bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
-                    if (!alreadySelected) {
-                        state = PlayerState.Grabbing;
-                        EventManager.TriggerIntEvent("Orange", playerId);
-                    }
-                }
-                if (rightPressed) {
-                    selection = FoodColor.Pink;
-                    bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
-                    if (!alreadySelected) {
-                        state = PlayerState.Grabbing;
-                        EventManager.TriggerIntEvent("Pink", playerId);
-                    }
-                }
-                break;
-                   
+            //    }
+            //    if (midPressed) {
+            //        selection = FoodColor.Orange;
+            //        bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
+            //        if (!alreadySelected) {
+            //            state = PlayerState.Grabbing;
+            //            EventManager.TriggerIntEvent("Orange", playerId);
+            //        }
+            //    }
+            //    if (rightPressed) {
+            //        selection = FoodColor.Pink;
+            //        bool alreadySelected = GameManager.Instance.Mochis[(int)selection].GetComponent<Food>().isSelected;
+            //        if (!alreadySelected) {
+            //            state = PlayerState.Grabbing;
+            //            EventManager.TriggerIntEvent("Pink", playerId);
+            //        }
+            //    }
+            //    break;         
         }
     }
 
@@ -222,9 +192,6 @@ public class Player : MonoBehaviour {
         switch ((GameState)newGameState){
             case GameState.Menu:
                 state = PlayerState.Idle;
-                break;
-            case GameState.Decision:
-                state = PlayerState.Selecting;
                 break;
             case GameState.Scramble:
                 state = PlayerState.Grabbing;
@@ -235,6 +202,9 @@ public class Player : MonoBehaviour {
                 break;
             case GameState.EndGame:
                 state = PlayerState.Idle;
+                break;
+            default:
+                Debug.Log("Default Player State Change case");
                 break;
         }
     }
@@ -264,7 +234,7 @@ public class Player : MonoBehaviour {
                 return;
             } else {
                 ResetPlayerVariables();
-                state = PlayerState.Scramble;
+                //state = PlayerState.Scramble;
                 return;
             }
         }
@@ -282,15 +252,6 @@ public class Player : MonoBehaviour {
     //Manipulation of object var functions
     void GetMochi() {
         hasMochi = true;
-    }
-
-    public void ResetGame() {
-        score = 0;
-    }
-
-    void ResetRound() {
-        hasMochi = false;
-        ResetPlayerVariables();
     }
 
     void ResetPlayerVariables() {

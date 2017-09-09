@@ -44,11 +44,13 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator PlayerSelectState() {
         //Debug.Log("Entering Player Select State");
+        EventManager.TriggerEvent("PlayerSelect");
         EventManager.TriggerIntEvent("GameStateChange", (int)GameState.PlayerSelect);
         while(state == GameState.PlayerSelect) {
             yield return 0;
         }
         //Debug.Log("Exiting Player Select State");
+        EventManager.TriggerEvent("GameStart");
         NextState();
     }
 
@@ -156,30 +158,23 @@ public class GameManager : MonoBehaviour {
             case GameState.PlayerSelect:
                 PlayerSelectLogic();
                 break;
-            case GameState.Decision:
-                DecisionStateLogic();
-                break;
             case GameState.Scramble:
                 ScrambleStateLogic();
                 break;
             case GameState.EndRound:
                 EndRoundStateLogic();
                 break;
+            default:
+                //Debug.Log("Default GameManager state case");
+                break;
         }
 	}
 
     //Game State Logic Functions
     void PlayerSelectLogic() {
-
-    }
-
-    void DecisionStateLogic() {
-        foreach(Player player in PlayerManager.Instance.CurrentPlayers) {
-            if (player.state != Player.PlayerState.Locked) {
-                return;
-            }
+        if (Input.GetKeyDown(KeyCode.Space) && PlayerManager.Instance.GetActivePlayerCount() >= 2) {
+            state = GameState.Decision;
         }
-        state = GameState.Scramble;
     }
 
     void ScrambleStateLogic() {
@@ -236,7 +231,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartButton() {
-        EventManager.TriggerEvent("GameStart");
+        EventManager.TriggerEvent("PlayerSelect");
         state = GameState.PlayerSelect;
     }
 

@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Sprite[] howToNextButtons = new Sprite[2];
 
+    [Header("Player Select Sprites")]
     //Game UI Vars:
     [Header("Gameplay UI Vars")]
     [SerializeField]
@@ -131,6 +132,7 @@ public class UIManager : MonoBehaviour {
     {
         EventManager.StartListeningTypeInt("PlayerSuccess", UpdateScore);
         EventManager.StartListening("EndRoundUI", EndRoundUI);
+        EventManager.StartListening("PlayerSelect", PlayerSelect);
         EventManager.StartListening("RoundReset", RoundResetUI);
         EventManager.StartListening("EndGameUI", EndGameUI);
         EventManager.StartListening("MenuScreen", MenuFromGame);
@@ -141,6 +143,7 @@ public class UIManager : MonoBehaviour {
     {
         EventManager.StopListeningTypeInt("PlayerSuccess", UpdateScore);
         EventManager.StopListening("EndRoundUI", EndRoundUI);
+        EventManager.StartListening("PlayerSelect", PlayerSelect);
         EventManager.StopListening("RoundReset", RoundResetUI);
         EventManager.StartListening("EndGameUI", EndGameUI);
         EventManager.StartListening("MenuScreen", MenuFromGame);
@@ -153,8 +156,8 @@ public class UIManager : MonoBehaviour {
     public void GameStart() {
         slideOut = false;
         DisplayMenu(false);
-        DisplayGameCanvas(false);
-        DisplayPlayerSelectCanvas(true);
+        DisplayGameCanvas(true);
+        DisplayPlayerSelectCanvas(false);
         
         P1Score.text = "0";
         P2Score.text = "0";
@@ -170,6 +173,10 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public void PlayerSelect() {
+        DisplayMenu(false);
+        DisplayPlayerSelectCanvas(true);
+    }
     public void InitializeHowToMenu() {
         DisplayMenu(false);
         DisplayHowTo(true);
