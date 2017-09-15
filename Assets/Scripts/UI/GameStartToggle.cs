@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class GameStartToggle : MonoBehaviour {
     Image currentImage;
 
-    [SerializeField]
-    Sprite[] toggleSprites;
 	// Use this for initialization
 	void Start () {
         currentImage = GetComponent<Image>();
@@ -16,9 +14,9 @@ public class GameStartToggle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(PlayerManager.Instance.GetActivePlayerCount() >= 2) {
-            currentImage.sprite = toggleSprites[1];
+            currentImage.enabled = true;
         } else {
-            currentImage.sprite = toggleSprites[0];
+            currentImage.enabled = false;
         }
 	}
 }

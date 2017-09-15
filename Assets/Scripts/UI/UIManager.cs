@@ -154,6 +154,8 @@ public class UIManager : MonoBehaviour {
 
     //--Menu Nav functions--
     public void GameStart() {
+        List<Player> players = PlayerManager.Instance.CurrentPlayers;
+
         slideOut = false;
         DisplayMenu(false);
         DisplayGameCanvas(true);
@@ -168,8 +170,13 @@ public class UIManager : MonoBehaviour {
         CurrentRoundText.text = "Round 1";
         ReturnButton.SetActive(false);
         for (int i = 0; i < 4; i++) {
-            PlayerUIObjects[i].position = originalPosAnchors[i];
-            WinnerText[i].SetActive(false);
+            if(players[i].isPlaying) {
+                PlayerUIObjects[i].position = originalPosAnchors[i];
+                WinnerText[i].SetActive(false);
+            } else {
+                PlayerUIObjects[i].GetComponent<Image>().gameObject.SetActive(false);
+            }
+
         }
     }
 
