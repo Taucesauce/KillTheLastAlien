@@ -212,7 +212,7 @@ public class Player : MonoBehaviour {
     //Lerp functions
     void StartLerp() {
         //Set start vars
-        selectionLocation = GameManager.Instance.mochiLocations[Enum.GetName(typeof(FoodColor), selection)];
+        selectionLocation = FoodFactory.Instance.nearestMochi(Enum.GetName(typeof(FoodColor), selection), transform.position);
 
         Vector2 diff = selectionLocation - originalLocation;
         diff.Normalize();

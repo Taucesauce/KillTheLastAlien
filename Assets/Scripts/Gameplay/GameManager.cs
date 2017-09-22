@@ -21,15 +21,6 @@ public class GameManager : MonoBehaviour {
     private const float timeBetweenRounds = 6f;
     private float countdown = timeBetweenRounds;
 
-    [Header("Mochis")]
-    [SerializeField]
-    private GameObject[] mochis = new GameObject[3];
-
-    [HideInInspector]
-    public GameObject[] Mochis { get { return mochis; } }
-
-    public Dictionary<string, Vector2> mochiLocations;
-
     //State Routines
     IEnumerator MenuState() {
         //Debug.Log("Entering Menu State");
@@ -130,12 +121,7 @@ public class GameManager : MonoBehaviour {
 
     //Accessible position data for Player object
     void Init() {
-        if(mochiLocations == null) {
-            mochiLocations = new Dictionary<string, Vector2>();
-            mochiLocations.Add("Green", (Vector2)mochis[(int)FoodColor.Green].GetComponent<Transform>().position);
-            mochiLocations.Add("Orange", (Vector2)mochis[(int)FoodColor.Orange].GetComponent<Transform>().position);
-            mochiLocations.Add("Pink", (Vector2)mochis[(int)FoodColor.Pink].GetComponent<Transform>().position);
-        }
+
     }
 
     //Event hooks
@@ -228,6 +214,7 @@ public class GameManager : MonoBehaviour {
 
     void GameStart() {
         currentRound = 1;
+        FoodFactory.Instance.SpawnFood(PlayerManager.Instance.CurrentPlayers.Count);
     }
 
     public void StartButton() {
