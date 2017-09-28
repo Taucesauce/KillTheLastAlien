@@ -8,10 +8,6 @@ using UnityEngine;
 public class Food : MonoBehaviour {
     //Animation offset for sprites to not sync on start
     [SerializeField]
-    [Range(0.0f, 1.0f)]
-    private float animationOffset;
-
-    [SerializeField]
     private GameObject GameCanvas;
 
     //Gameplay Vars
@@ -24,7 +20,6 @@ public class Food : MonoBehaviour {
 
     void Start() {
         originalPos = GetComponent<Transform>().position;
-        GetComponent<Animator>().Play(Enum.GetName(typeof(FoodColor), color) + "Idle", -1, animationOffset);
         colorName = Enum.GetName(typeof(FoodColor), color);
     }
 
@@ -33,15 +28,16 @@ public class Food : MonoBehaviour {
             transform.position = transform.parent.position;
         }
     }
+
 	void OnEnable() {
-        EventManager.StartListeningTypeInt(Enum.GetName(typeof(FoodColor),color), AssignPlayer);
+        EventManager.StartListeningTypeInt("ReachedFood", AssignPlayer);
         EventManager.StartListeningTypeInt("GrabMochi", AttachToPlayer);
         EventManager.StartListening("RoundReset", RoundReset);
         EventManager.StartListening("EndGameUI", EndGame);
     }
 
     void OnDisable() {
-        EventManager.StopListeningTypeInt(Enum.GetName(typeof(FoodColor), color), AssignPlayer);
+        EventManager.StopListeningTypeInt("ReachedFood", AssignPlayer);
         EventManager.StopListeningTypeInt("GrabMochi", AttachToPlayer);
         EventManager.StopListening("RoundReset", RoundReset);
     }
@@ -50,11 +46,7 @@ public class Food : MonoBehaviour {
         if (!isSelected) {
             playerID = id;
             isSelected = true;
-            if (GameManager.Instance.state == GameState.Decision) {
-                EventManager.TriggerIntEvent("DecisionScore", id);
-            } else if (GameManager.Instance.state == GameState.Scramble) {
-                EventManager.TriggerIntEvent("ScrambleScore", id);
-            }
+            EventManager.TriggerIntEvent("Score", id);
         }
     }
 
@@ -63,7 +55,6 @@ public class Food : MonoBehaviour {
             isAttached = true;
             int adjustedID = (int)playerID + 1;
             transform.parent = GameObject.Find("Player" + adjustedID).transform;
-            GetComponent<Animator>().Play(colorName + "Wow");
             EventManager.TriggerEvent(playerID + "GrabbedMochi");
             EventManager.TriggerIntEvent("MochiGrabbed", (int)color);
         }
@@ -75,7 +66,6 @@ public class Food : MonoBehaviour {
         transform.parent = null;
         transform.position = originalPos;
         playerID = null;
-        GetComponent<Animator>().Play(Enum.GetName(typeof(FoodColor), color) + "Idle", -1, animationOffset);
     }
 
     void EndGame() {

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 enum FoodCount {
-    Small = 25,
-    Medium = 32,
-    Large = 43
+    Small = 13,
+    Medium = 22,
+    Large = 30
 }
 enum FoodType {
     GreenMochi,
@@ -71,8 +71,8 @@ public class FoodFactory : MonoBehaviour {
     }
 
     private void FillList(FoodCount amount) {
-        float backgroundWidth = backgroundImage.sprite.bounds.size.x;
-        float backgroundHeight = backgroundImage.sprite.bounds.size.y;
+        float backgroundWidth = backgroundImage.sprite.bounds.extents.x - 3;
+        float backgroundHeight = backgroundImage.sprite.bounds.extents.y - 2;
 
         for(int i = 0; i < (int)amount; i++) {
             Vector2 temp = new Vector2(UnityEngine.Random.Range(-backgroundWidth,backgroundWidth), UnityEngine.Random.Range(-backgroundHeight,backgroundHeight));
@@ -80,7 +80,22 @@ public class FoodFactory : MonoBehaviour {
         }
     }
 
-    public Vector2 nearestMochi(string v, Vector3 position) {
-        return Vector2.zero;
+    public Vector2? nearestFood(FoodColor color, Vector3 position) {
+        Vector2? nearestFoodPos = null;
+        float minDistance = 9001;
+
+        //Get all food of color selected.
+        List<GameObject> colorSortedList = foodList.FindAll(f => f.GetComponent<Food>().color == color);
+        foreach(GameObject food in colorSortedList) {
+            Vector2 foodPos = food.transform.position;
+
+            float dist = Vector2.Distance(position, foodPos);
+            if(dist < minDistance) {
+                minDistance = dist;
+                nearestFoodPos = foodPos;
+            }
+        }
+
+        return nearestFoodPos;
     }
 }

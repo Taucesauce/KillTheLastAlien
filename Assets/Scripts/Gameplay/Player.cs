@@ -48,12 +48,11 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator GrabbingState() {
-        //Debug.Log("Entering Grabbing for Player " + playerId);
-        StartLerp();
+        Debug.Log("Entering Grabbing for Player " + playerId);
         while (state == PlayerState.Grabbing) {
             yield return 0;
         }
-        //Debug.Log("Exiting Grabbing for Player " + playerId);
+        Debug.Log("Exiting Grabbing for Player " + playerId);
         NextState();
     }
 
@@ -139,23 +138,26 @@ public class Player : MonoBehaviour {
                     EventManager.TriggerIntEvent("Join", playerId);
                 }
                 break;
-            //case PlayerState.Selecting:
-            //    if (leftPressed) {
-            //        EventManager.TriggerIntEvent("Green", playerId);
-            //        selection = FoodColor.Green;
-            //        state = PlayerState.Locked;
-            //    }
-            //    if (midPressed) {
-            //        EventManager.TriggerIntEvent("Orange", playerId);
-            //        selection = FoodColor.Orange;
-            //        state = PlayerState.Locked;
-            //    }
-            //    if (rightPressed) {
-            //        EventManager.TriggerIntEvent("Pink", playerId);
-            //        selection = FoodColor.Pink;
-            //        state = PlayerState.Locked;
-            //    }
-            //    break;
+            case PlayerState.Idle:
+                if (leftPressed) {
+                    Debug.Log("Player " + playerId + " pressed Left(Green)");
+                    selection = FoodColor.Green;
+                    state = PlayerState.Grabbing;
+                    StartLerp();
+                }
+                if (midPressed) {
+                    Debug.Log("Player " + playerId + " pressed Middle(Orange)");
+                    selection = FoodColor.Orange;
+                    state = PlayerState.Grabbing;
+                    StartLerp();
+                }
+                if (rightPressed) {
+                    Debug.Log("Player " + playerId + " pressed Right(Pink)");
+                    selection = FoodColor.Pink;
+                    state = PlayerState.Grabbing;
+                    StartLerp();
+                }
+                break;
             ////Not a fan of the alreadySelected but should work for the time being.
             //case PlayerState.Scramble:
             //    if (leftPressed) {
@@ -193,18 +195,18 @@ public class Player : MonoBehaviour {
             case GameState.Menu:
                 state = PlayerState.Idle;
                 break;
-            case GameState.Scramble:
-                state = PlayerState.Grabbing;
+            case GameState.RoundActive:
+                player.controllers.maps.SetMapsEnabled(false, "PlayerSelect");
+                player.controllers.maps.SetMapsEnabled(true, "Default");
                 break;
             case GameState.EndRound:
-                if (!hasMochi) { EventManager.TriggerIntEvent("UIFail", playerId); }
                 state = PlayerState.Idle;
                 break;
             case GameState.EndGame:
                 state = PlayerState.Idle;
                 break;
             default:
-                Debug.Log("Default Player State Change case");
+                Debug.Log("Default hit Gamestate: " + GameManager.Instance.state);
                 break;
         }
     }
@@ -212,7 +214,10 @@ public class Player : MonoBehaviour {
     //Lerp functions
     void StartLerp() {
         //Set start vars
-        selectionLocation = FoodFactory.Instance.nearestMochi(Enum.GetName(typeof(FoodColor), selection), transform.position);
+        Vector2? nearestResult = FoodFactory.Instance.nearestFood((FoodColor)selection, originalLocation);
+        if(nearestResult != null) {
+            selectionLocation = (Vector2)nearestResult;
+        }
 
         Vector2 diff = selectionLocation - originalLocation;
         diff.Normalize();
@@ -226,15 +231,15 @@ public class Player : MonoBehaviour {
         if((Vector2)transform.position == selectionLocation && reachedMochi == false) {
             startTime = 0;
             reachedMochi = true;
+            EventManager.TriggerIntEvent("ReachedFood", playerId);
             EventManager.TriggerIntEvent("GrabMochi", playerId);
         } else if((Vector2)transform.position == originalLocation && reachedMochi == true) {
             if (hasMochi) {
                 state = PlayerState.Idle;
-                EventManager.TriggerIntEvent("UISuccess", playerId);
                 return;
             } else {
                 ResetPlayerVariables();
-                //state = PlayerState.Scramble;
+                state = PlayerState.Idle;
                 return;
             }
         }

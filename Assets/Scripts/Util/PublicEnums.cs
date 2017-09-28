@@ -11,8 +11,7 @@ public enum FoodColor {
 public enum GameState {
     Menu,
     PlayerSelect,
-    Decision,
-    Scramble,
+    RoundActive,
     EndRound,
     EndGame
 }

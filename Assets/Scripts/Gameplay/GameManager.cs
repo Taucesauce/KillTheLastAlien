@@ -45,23 +45,13 @@ public class GameManager : MonoBehaviour {
         NextState();
     }
 
-    IEnumerator DecisionState() {
-        //Debug.Log("Entering Decision State");
-        EventManager.TriggerIntEvent("GameStateChange", (int)GameState.Decision);
-        while (state == GameState.Decision) {
+    IEnumerator RoundActiveState() {
+        //Debug.Log("Entering Round Active State");
+        EventManager.TriggerIntEvent("GameStateChange", (int)GameState.RoundActive);
+        while(state == GameState.RoundActive) {
             yield return 0;
         }
-        //Debug.Log("Exiting Decision State");
-        NextState();
-    }
-
-    IEnumerator ScrambleState() {
-        //Debug.Log("Entering Scramble State");
-        EventManager.TriggerIntEvent("GameStateChange", (int)GameState.Scramble);
-        while (state == GameState.Scramble) {
-            yield return 0;
-        }
-        //Debug.Log("Exiting Scramble State");
+        //Debug.Log("Exiting Round Active State");
         NextState();
     }
 
@@ -144,8 +134,8 @@ public class GameManager : MonoBehaviour {
             case GameState.PlayerSelect:
                 PlayerSelectLogic();
                 break;
-            case GameState.Scramble:
-                ScrambleStateLogic();
+            case GameState.RoundActive:
+                RoundActiveStateLogic();
                 break;
             case GameState.EndRound:
                 EndRoundStateLogic();
@@ -159,21 +149,14 @@ public class GameManager : MonoBehaviour {
     //Game State Logic Functions
     void PlayerSelectLogic() {
         if (Input.GetKeyDown(KeyCode.Space) && PlayerManager.Instance.GetActivePlayerCount() >= 2) {
-            state = GameState.Decision;
+            state = GameState.RoundActive;
         }
     }
 
-    void ScrambleStateLogic() {
-        int playersIdle = 0;
-        foreach(Player player in PlayerManager.Instance.CurrentPlayers) {
-            if (player.state == Player.PlayerState.Idle) {
-                playersIdle++;
-            }
-        }
-        if (playersIdle >= 3)
+    void RoundActiveStateLogic() {
+        if(FoodFactory.Instance.FoodList.Count <= 0) {
             state = GameState.EndRound;
-        else
-            return;
+        }
     }
 
     void EndRoundStateLogic() {
@@ -183,7 +166,7 @@ public class GameManager : MonoBehaviour {
             if(countdown <= 0.0f) {
                 currentRound++;
                 UIManager.Instance.UpdateCurrentRound(currentRound);
-                state = GameState.Decision;
+                state = GameState.RoundActive;
             }
         } else {
             state = GameState.EndGame;
