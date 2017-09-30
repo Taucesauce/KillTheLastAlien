@@ -130,7 +130,7 @@ public class UIManager : MonoBehaviour {
     //Should have used a state machine here instead of all of these events, hacky rush job.
     void OnEnable()
     {
-        EventManager.StartListeningTypeInt("PlayerSuccess", UpdateScore);
+        EventManager.StartListeningTypeInt("PlayerScored", UpdateScore);
         EventManager.StartListening("EndRoundUI", EndRoundUI);
         EventManager.StartListening("PlayerSelect", PlayerSelect);
         EventManager.StartListening("RoundReset", RoundResetUI);
@@ -141,7 +141,7 @@ public class UIManager : MonoBehaviour {
 
     void OnDisable()
     {
-        EventManager.StopListeningTypeInt("PlayerSuccess", UpdateScore);
+        EventManager.StopListeningTypeInt("PlayerScored", UpdateScore);
         EventManager.StopListening("EndRoundUI", EndRoundUI);
         EventManager.StartListening("PlayerSelect", PlayerSelect);
         EventManager.StopListening("RoundReset", RoundResetUI);

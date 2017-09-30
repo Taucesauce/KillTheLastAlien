@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour {
             if(countdown <= 0.0f) {
                 currentRound++;
                 UIManager.Instance.UpdateCurrentRound(currentRound);
+                FoodFactory.Instance.SpawnFood(PlayerManager.Instance.GetActivePlayerCount());
                 state = GameState.RoundActive;
             }
         } else {

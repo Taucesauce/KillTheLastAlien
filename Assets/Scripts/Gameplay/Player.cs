@@ -203,7 +203,6 @@ public class Player : MonoBehaviour {
                 player.controllers.maps.SetMapsEnabled(true, "Default");
                 break;
             case GameState.EndRound:
-                state = PlayerState.Idle;
                 break;
             case GameState.EndGame:
                 state = PlayerState.Idle;
@@ -221,14 +220,17 @@ public class Player : MonoBehaviour {
         if(nearestResult != null) {
             selectionLocation = nearestResult.transform.position;
             targetID = nearestResult.GetComponent<Food>().FoodID;
+
+            Vector2 diff = selectionLocation - originalLocation;
+            diff.Normalize();
+            float zRot = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, zRot);
+
+            startTime = 0;
         }
-
-        Vector2 diff = selectionLocation - originalLocation;
-        diff.Normalize();
-        float zRot = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, zRot);
-
-        startTime = 0;
+        else {
+            state = PlayerState.Idle;
+        }
     }
 
     void UpdateLerp() {
@@ -238,6 +240,7 @@ public class Player : MonoBehaviour {
             EventManager.TriggerIntEvent("ReachedFood"+targetID, playerId);
         } else if((Vector2)transform.position == originalLocation && reachedMochi == true) {
             if (hasMochi) {
+                IncrementScore(1);
                 FoodFactory.Instance.EatFood((int)targetID);
             }
             ResetPlayerVariables();
@@ -263,10 +266,12 @@ public class Player : MonoBehaviour {
     void ResetPlayerVariables() {
         reachedMochi = false;
         selection = null;
+        targetID = null;
         hasMochi = false;
     }
 
     public void IncrementScore(int amount) {
         score += amount;
+        EventManager.TriggerIntEvent("PlayerScored", playerId);
     }
 }
