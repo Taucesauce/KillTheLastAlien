@@ -76,12 +76,13 @@ public class FoodFactory : MonoBehaviour {
 
         for(int i = 0; i < (int)amount; i++) {
             Vector2 temp = new Vector2(UnityEngine.Random.Range(-backgroundWidth,backgroundWidth), UnityEngine.Random.Range(-backgroundHeight,backgroundHeight));
-            foodList.Add(Instantiate(prefabList[UnityEngine.Random.Range(0, 6)],temp,Quaternion.identity)); 
+            foodList.Add(Instantiate(prefabList[UnityEngine.Random.Range(0, 6)],temp,Quaternion.identity));
+            foodList[i].GetComponent<Food>().FoodID = i;
         }
     }
 
-    public Vector2? nearestFood(FoodColor color, Vector3 position) {
-        Vector2? nearestFoodPos = null;
+    public GameObject nearestFood(FoodColor color, Vector3 position) {
+        GameObject nearestFood = null;
         float minDistance = 9001;
 
         //Get all food of color selected.
@@ -92,10 +93,16 @@ public class FoodFactory : MonoBehaviour {
             float dist = Vector2.Distance(position, foodPos);
             if(dist < minDistance) {
                 minDistance = dist;
-                nearestFoodPos = foodPos;
+                nearestFood = food;
             }
         }
 
-        return nearestFoodPos;
+        return nearestFood;
+    }
+
+    public void EatFood(int foodID) {
+        GameObject obj = FoodList.Find(f => f.GetComponent<Food>().FoodID == foodID);
+        FoodList.RemoveAll(f => f.GetComponent<Food>().FoodID == foodID);
+        Destroy(obj);
     }
 }

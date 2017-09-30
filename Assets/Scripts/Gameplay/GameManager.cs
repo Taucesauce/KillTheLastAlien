@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour {
 
     void GameStart() {
         currentRound = 1;
-        FoodFactory.Instance.SpawnFood(PlayerManager.Instance.CurrentPlayers.Count);
+        FoodFactory.Instance.SpawnFood(PlayerManager.Instance.GetActivePlayerCount());
     }
 
     public void StartButton() {

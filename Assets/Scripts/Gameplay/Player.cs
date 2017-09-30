@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
     private int score;
     public int Score { get { return score; } }
     public bool isPlaying = false;
+    private int? targetID = null;
     private Rewired.Player player;
     public PlayerState state;
 
@@ -193,6 +194,8 @@ public class Player : MonoBehaviour {
     void ChangeState(int newGameState) {
         switch ((GameState)newGameState){
             case GameState.Menu:
+                player.controllers.maps.SetMapsEnabled(true, "PlayerSelect");
+                player.controllers.maps.SetMapsEnabled(false, "Default");
                 state = PlayerState.Idle;
                 break;
             case GameState.RoundActive:
@@ -214,9 +217,10 @@ public class Player : MonoBehaviour {
     //Lerp functions
     void StartLerp() {
         //Set start vars
-        Vector2? nearestResult = FoodFactory.Instance.nearestFood((FoodColor)selection, originalLocation);
+        GameObject nearestResult = FoodFactory.Instance.nearestFood((FoodColor)selection, originalLocation);
         if(nearestResult != null) {
-            selectionLocation = (Vector2)nearestResult;
+            selectionLocation = nearestResult.transform.position;
+            targetID = nearestResult.GetComponent<Food>().FoodID;
         }
 
         Vector2 diff = selectionLocation - originalLocation;
@@ -231,17 +235,14 @@ public class Player : MonoBehaviour {
         if((Vector2)transform.position == selectionLocation && reachedMochi == false) {
             startTime = 0;
             reachedMochi = true;
-            EventManager.TriggerIntEvent("ReachedFood", playerId);
-            EventManager.TriggerIntEvent("GrabMochi", playerId);
+            EventManager.TriggerIntEvent("ReachedFood"+targetID, playerId);
         } else if((Vector2)transform.position == originalLocation && reachedMochi == true) {
             if (hasMochi) {
-                state = PlayerState.Idle;
-                return;
-            } else {
-                ResetPlayerVariables();
-                state = PlayerState.Idle;
-                return;
+                FoodFactory.Instance.EatFood((int)targetID);
             }
+            ResetPlayerVariables();
+            state = PlayerState.Idle;
+            return;
         }
         if (reachedMochi) {
             startTime += Time.deltaTime;
@@ -262,6 +263,7 @@ public class Player : MonoBehaviour {
     void ResetPlayerVariables() {
         reachedMochi = false;
         selection = null;
+        hasMochi = false;
     }
 
     public void IncrementScore(int amount) {

@@ -11,6 +11,14 @@ public class Food : MonoBehaviour {
     private GameObject GameCanvas;
 
     //Gameplay Vars
+    private int foodID;
+    public int FoodID {
+        get { return foodID; }
+        set {
+                foodID = value;
+                EventManager.StartListeningTypeInt("ReachedFood" + foodID, AssignPlayer);
+            }
+    }
     private Vector2 originalPos;
     public FoodColor color;
     private string colorName;
@@ -30,23 +38,21 @@ public class Food : MonoBehaviour {
     }
 
 	void OnEnable() {
-        EventManager.StartListeningTypeInt("ReachedFood", AssignPlayer);
-        EventManager.StartListeningTypeInt("GrabMochi", AttachToPlayer);
         EventManager.StartListening("RoundReset", RoundReset);
         EventManager.StartListening("EndGameUI", EndGame);
     }
 
     void OnDisable() {
-        EventManager.StopListeningTypeInt("ReachedFood", AssignPlayer);
-        EventManager.StopListeningTypeInt("GrabMochi", AttachToPlayer);
+        EventManager.StopListeningTypeInt("ReachedFood" + foodID, AssignPlayer);
         EventManager.StopListening("RoundReset", RoundReset);
+        EventManager.StopListening("EndGameUI", EndGame);
     }
 
     void AssignPlayer(int id) {
         if (!isSelected) {
             playerID = id;
             isSelected = true;
-            EventManager.TriggerIntEvent("Score", id);
+            AttachToPlayer(id);
         }
     }
 
@@ -56,7 +62,6 @@ public class Food : MonoBehaviour {
             int adjustedID = (int)playerID + 1;
             transform.parent = GameObject.Find("Player" + adjustedID).transform;
             EventManager.TriggerEvent(playerID + "GrabbedMochi");
-            EventManager.TriggerIntEvent("MochiGrabbed", (int)color);
         }
     }
 
