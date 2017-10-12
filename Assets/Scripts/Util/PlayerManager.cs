@@ -87,4 +87,13 @@ public class PlayerManager : MonoBehaviour {
     void IncrementScore(int playerID) {
         currentPlayers[playerID].IncrementScore(1);
     }
+
+    public bool AllPlayersAtStartPos() {
+        foreach(Player player in currentPlayers) {
+            if (!player.AtStartPos()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

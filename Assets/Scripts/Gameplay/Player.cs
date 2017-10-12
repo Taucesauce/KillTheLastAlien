@@ -206,6 +206,7 @@ public class Player : MonoBehaviour {
                 break;
             case GameState.EndGame:
                 state = PlayerState.Idle;
+                score = 0;
                 break;
             default:
                 Debug.Log("Default hit Gamestate: " + GameManager.Instance.state);
@@ -273,5 +274,9 @@ public class Player : MonoBehaviour {
     public void IncrementScore(int amount) {
         score += amount;
         EventManager.TriggerIntEvent("PlayerScored", playerId);
+    }
+
+    public bool AtStartPos() {
+        return (Vector2)transform.position == originalLocation;
     }
 }

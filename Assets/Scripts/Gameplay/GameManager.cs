@@ -155,8 +155,26 @@ public class GameManager : MonoBehaviour {
 
     void RoundActiveStateLogic() {
         if(FoodFactory.Instance.FoodList.Count <= 0) {
-            state = GameState.EndRound;
+            if (PlayerManager.Instance.AllPlayersAtStartPos()) {
+                state = GameState.EndRound;
+            }
         }
+
+        UIManager.Instance.SetCrown(DetermineCurrentWinner());
+    }
+
+    int DetermineCurrentWinner() {
+        int highestScore = 0;
+        int highestPlayerID = -1;
+
+        foreach (Player player in PlayerManager.Instance.CurrentPlayers) {
+            if (player.Score > highestScore) {
+                highestScore = player.Score;
+                highestPlayerID = player.playerId;
+            }
+        }
+
+        return highestPlayerID;
     }
 
     void EndRoundStateLogic() {
@@ -176,7 +194,7 @@ public class GameManager : MonoBehaviour {
 
     //This feels like it could be optimized by sorting/selecting differently but I'm out of time!
     void EndGameStateLogic() {
-        int highestScore = 0;
+        int highestScore = 1;
         Dictionary<int, int> playerScores = new Dictionary<int, int>();
         List<int> highestScoringPlayers = new List<int>();
         foreach(Player player in PlayerManager.Instance.CurrentPlayers) {

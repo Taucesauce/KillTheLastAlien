@@ -26,12 +26,6 @@ public class UIManager : MonoBehaviour {
 
     [Header("Menu Sprites")]
     [SerializeField]
-    private GameObject startSprite;
-    [SerializeField]
-    private GameObject howToSprite;
-    [SerializeField]
-    private GameObject exitSprite;
-    [SerializeField]
     private Image howToBack;
     [SerializeField]
     private Image howToNext;
@@ -42,8 +36,6 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Sprite[] howToNextButtons = new Sprite[2];
 
-    [Header("Player Select Sprites")]
-    //Game UI Vars:
     [Header("Gameplay UI Vars")]
     [SerializeField]
     private Canvas GameCanvas;
@@ -67,6 +59,14 @@ public class UIManager : MonoBehaviour {
     private GameObject[] WinnerText = new GameObject[4];
     [SerializeField]
     private GameObject ReturnButton;
+    [SerializeField]
+    private GameObject[] crowns = new GameObject[4];
+    private int currentWinner = -1;
+
+    [SerializeField]
+    private Sprite[] endOfRoundSprites;
+    [SerializeField]
+    private GameObject endOfRound;
 
     //UI Lerp Vars
     [Header("UI Lerp Vars")]
@@ -105,9 +105,6 @@ public class UIManager : MonoBehaviour {
 
     //--Setup functions--
     void Start() {
-        startSprite.GetComponent<Animator>().enabled = false;
-        howToSprite.GetComponent<Animator>().enabled = false;
-        exitSprite.GetComponent<Animator>().enabled = false;
         currentHowToImage = HowToCanvas.GetComponentInChildren<Image>();
         NextRoundText = NextRoundCounter.GetComponent<Text>();
         CurrentRoundText = CurrentRoundObject.GetComponent<Text>();
@@ -165,6 +162,9 @@ public class UIManager : MonoBehaviour {
         P2Score.text = "0";
         P3Score.text = "0";
         P4Score.text = "0";
+
+        ResetCrowns();
+        currentWinner = -1;
 
         CurrentRoundObject.SetActive(true);
         CurrentRoundText.text = "Round 1";
@@ -281,6 +281,20 @@ public class UIManager : MonoBehaviour {
                 break;
         }
     }
+
+    public void SetCrown(int playerID) {
+        if(currentWinner != playerID) {
+            currentWinner = playerID;
+            ResetCrowns();
+            crowns[playerID].SetActive(true);
+        }
+    }
+
+    void ResetCrowns() {
+        foreach (GameObject crown in crowns) {
+            crown.SetActive(false);
+        }
+    }
     //--End Gameplay Update Events--
 
     //--Round End/Round Reset Functions--
@@ -290,6 +304,7 @@ public class UIManager : MonoBehaviour {
         slideIn = true;
         CurrentRoundObject.SetActive(true);
         NextRoundCounter.SetActive(false);
+        endOfRound.SetActive(false);
     }
 
     private void EndRoundUI() {
@@ -298,6 +313,8 @@ public class UIManager : MonoBehaviour {
         slideIn = false;
         CurrentRoundObject.SetActive(false);
         NextRoundCounter.SetActive(true);
+        endOfRound.SetActive(true);
+        endOfRound.GetComponent<Image>().sprite = endOfRoundSprites[GameManager.Instance.CurrentRound - 1];
     }
 
     private void EndGameUI() {
@@ -336,35 +353,4 @@ public class UIManager : MonoBehaviour {
         }
     }
     //--End Round End/Round Reset Functions--
-
-    //Inspector doesn't accept Enums as parameters for event functions.
-    //That's actually, really dumb.
-    //Short for time so just casting it but makes the inspector input really unclear :(
-    public void MenuButtonEnterHover(int button) {
-        switch ((MenuButtons)button) {
-            case MenuButtons.Start:
-                startSprite.GetComponent<Animator>().enabled = true;
-                break;
-            case MenuButtons.HowTo:
-                howToSprite.GetComponent<Animator>().enabled = true;
-                break;
-            case MenuButtons.Exit:
-                exitSprite.GetComponent<Animator>().enabled = true;
-                break;
-        }
-    }
-
-    public void MenuButtonExitHover(int button) {
-        switch ((MenuButtons)button) {
-            case MenuButtons.Start:
-                startSprite.GetComponent<Animator>().enabled = false;
-                break;
-            case MenuButtons.HowTo:
-                howToSprite.GetComponent<Animator>().enabled = false;
-                break;
-            case MenuButtons.Exit:
-                exitSprite.GetComponent<Animator>().enabled = false;
-                break;
-        }
-    }
 }
